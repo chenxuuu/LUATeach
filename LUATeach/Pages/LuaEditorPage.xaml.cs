@@ -13,22 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace LUATeach
+namespace LUATeach.Pages
 {
     /// <summary>
-    /// MainWindow.xaml 的交互逻辑
+    /// LuaEditorPage.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LuaEditorPage : Page
     {
-        public MainWindow()
+        public LuaEditorPage()
         {
             InitializeComponent();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            VersionTextBlock.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            mainFrame.Navigate(new Uri("Pages/HomePage.xaml", UriKind.Relative));
         }
     }
 }

@@ -5,11 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LUATeach"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="LUATeach - 教你学Lua" Height="600" Width="400"
+        Loaded="Window_Loaded">
     <Window.Style>
         <Style TargetType="Window" BasedOn="{StaticResource {x:Type Window}}"/>
     </Window.Style>
     <Grid>
-        <Button Content="111"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Frame Name="mainFrame" NavigationUIVisibility="Hidden"/>
+        <DockPanel Grid.Row="1">
+            <StatusBar DockPanel.Dock="Bottom">
+                <TextBlock Text="软件版本："/>
+                <TextBlock Name="VersionTextBlock"/>
+                <TextBlock Text="https://github.com/chenxuuu/LUATeach"/>
+            </StatusBar>
+        </DockPanel>
     </Grid>
 </Window>
