@@ -14,7 +14,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel HorizontalAlignment="Center" Margin="5">
+        <StackPanel HorizontalAlignment="Center" Margin="2">
             <TextBlock Text="LUATeach" FontFamily="Arial Black" FontSize="40" Foreground="#FF4A4A4A"/>
             <TextBlock Text="循序渐进，在实践中学习的交互式Lua教程" Foreground="#FF7B7B7B"/>
         </StackPanel>

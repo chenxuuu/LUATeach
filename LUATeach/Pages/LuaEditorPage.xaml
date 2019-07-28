@@ -4,10 +4,40 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LUATeach.Pages"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="400"
-      Title="LuaEditorPage">
+      d:DesignHeight="600" d:DesignWidth="400"
+      Title="LuaEditorPage"
+      Loaded="Page_Loaded"
+      Unloaded="Page_Unloaded">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <avalonEdit:TextEditor
+                        Grid.Row="0"
+                        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                        Name="textEditor"
+                        FontFamily="Consolas"
+                        FontSize="10pt"
+                        ShowLineNumbers="True"
+                        Text="print('Hello World!')"/>
+        <Button x:Name="HomeButton" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="回到首页" Click="HomeButton_Click">
+            <fa:FontAwesome Icon="Home"/>
+        </Button>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="RunButton" Grid.Row="0" Content="运行脚本" Click="RunButton_Click"/>
+            <TextBox x:Name="LogTextBlock" Grid.Row="1" IsReadOnly="true" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Top" TextWrapping="Wrap"/>
+        </Grid>
+
+
+        <!-- 中间改变分割大小的东西 -->
+        <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>
