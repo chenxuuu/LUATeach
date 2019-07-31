@@ -24,6 +24,9 @@ namespace LUATeach.LuaEnv
 
             //运行初始化文件
             lua.DoString(Global.Utils.GetAssetsFileContent("/Assets/script/head.lua"));
+            lua.DoString(Global.Utils.GetAssetsFileContent("/Assets/script/strings.lua"));
+            lua.Global.SetInPath("log", lua.DoString(Global.Utils.GetAssetsFileContent("/Assets/script/log.lua"))[0]);
+            lua.Global.SetInPath("JSON", lua.DoString(Global.Utils.GetAssetsFileContent("/Assets/script/JSON.lua"))[0]);
 
             return lua;
         }

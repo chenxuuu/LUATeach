@@ -15,7 +15,11 @@ namespace LUATeach.LuaEnv
         /// <param name="log">日志内容</param>
         public static void PrintLog(string log)
         {
-            PrintLuaLog(DateTime.Now.ToString("[HH:mm:ss:ffff]") + log, EventArgs.Empty);
+            try
+            {
+                PrintLuaLog(DateTime.Now.ToString("[HH:mm:ss:ffff]") + log, EventArgs.Empty);
+            }
+            catch { }
         }
 
 

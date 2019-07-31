@@ -46,12 +46,21 @@ namespace LUATeach.Pages
             }
             textEditor.Text = Global.Utils.GetAssetsFileContent("/Assets/script/default.lua");
             LuaEnv.LuaApi.PrintLuaLog += LuaApi_PrintLuaLog;
+            LuaEnv.LuaRunEnv.LuaRunError += LuaRunEnv_LuaRunError;
+        }
+
+        private void LuaRunEnv_LuaRunError(object sender, EventArgs e)
+        {
+            Stop();
         }
 
         private void LuaApi_PrintLuaLog(object sender, EventArgs e)
         {
-            LogTextBlock.AppendText((sender as string) + "\r\n");
-            LogTextBlock.ScrollToEnd();
+            this.Dispatcher.Invoke(new Action(delegate
+            {
+                LogTextBlock.AppendText((sender as string) + "\r\n");
+                LogTextBlock.ScrollToEnd();
+            }));
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -63,27 +72,38 @@ namespace LUATeach.Pages
             }
         }
 
-        private XLua.LuaEnv lua;
+        private void Stop()
+        {
+            this.Dispatcher.Invoke(new Action(delegate
+            {
+                LuaApi_PrintLuaLog("脚本已停止运行\r\n", EventArgs.Empty);
+                RunButton.Content = "运行脚本";
+            }));
+        }
+
         private void RunButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
             if(button.Content as string == "运行脚本")
             {
-                lua = LuaEnv.LuaEnv.CreateLuaEnv();
+                LuaApi_PrintLuaLog("脚本已开始运行", EventArgs.Empty);
+                LuaEnv.LuaRunEnv.New(textEditor.Text);
                 button.Content = "停止运行脚本";
             }
             else
             {
-                lua.Dispose();
-                LuaApi_PrintLuaLog("脚本已停止运行\r\n", EventArgs.Empty);
-                button.Content = "运行脚本";
+                LuaEnv.LuaRunEnv.StopLua("");
+                Stop();
             }
 
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
+            if(LuaEnv.LuaRunEnv.isRunning)
+                LuaEnv.LuaRunEnv.StopLua("");
             LuaEnv.LuaApi.PrintLuaLog -= LuaApi_PrintLuaLog;
+            LuaEnv.LuaRunEnv.LuaRunError -= LuaRunEnv_LuaRunError;
         }
     }
 }
