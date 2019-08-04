@@ -37,7 +37,7 @@ namespace LUATeach.Pages
 
         private void LearnLuaButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Comming soon!");
+            this.NavigationService.Navigate(new Uri("Pages/LuaListPage.xaml", UriKind.Relative));
         }
     }
 }

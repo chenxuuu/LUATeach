@@ -1,0 +1,36 @@
+﻿<Page x:Class="LUATeach.Pages.LuaListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:LUATeach.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="400"
+      Title="LuaListPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#FFE6E6E6" >
+            <TextBlock Text="选择章节" HorizontalAlignment="Center" FontSize="25"/>
+            <Button Name="backButton" HorizontalAlignment="Left" Content="返回" Click="BackButton_Click"/>
+        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" VerticalAlignment="Top">
+            <Button Background="White" Height="100" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="1"/>
+                    <TextBlock Text="1111" Grid.Column="1"/>
+                </Grid>
+            </Button>
+        </ScrollViewer>
+    </Grid>
+</Page>

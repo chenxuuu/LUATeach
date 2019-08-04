@@ -107,6 +107,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\LuaListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\HomePage.xaml.cs">
@@ -114,6 +118,9 @@
     </Compile>
     <Compile Include="Pages\LuaEditorPage.xaml.cs">
       <DependentUpon>LuaEditorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LuaListPage.xaml.cs">
+      <DependentUpon>LuaListPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
