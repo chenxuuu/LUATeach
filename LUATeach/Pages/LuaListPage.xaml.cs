@@ -52,22 +52,7 @@ namespace LUATeach.Pages
             Level data = ((Button)sender).Tag as Level;
             Global.Levels.selected = data.id - 1;
 
-            string page;
-            switch (Global.Levels.LevelList[Global.Levels.selected].levelType)
-            {
-                case Global.LevelType.choice:
-                    page = "IntroducePage";
-                    break;
-
-                default:
-                    page = null;
-                    break;
-            }
-            if(page != null)
-            {
-                this.NavigationService.Navigate(new Uri($"Pages/{page}.xaml", UriKind.Relative));
-            }
-
+            this.NavigationService.Navigate(new Uri($"Pages/{Global.Levels.GetPage()}.xaml", UriKind.Relative));
         }
     }
 

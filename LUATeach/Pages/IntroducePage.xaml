@@ -17,9 +17,23 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Background="#FFE6E6E6" >
-            <TextBlock Text="" HorizontalAlignment="Center" FontSize="25"/>
+            <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Center" FontSize="25"/>
             <Button Name="backButton" HorizontalAlignment="Left" Content="返回" Click="BackButton_Click"/>
         </Grid>
         <markdig:MarkdownViewer Grid.Row="1" x:Name="Viewer" ScrollViewer.CanContentScroll="True"/>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="questionTextBlock" HorizontalAlignment="Center" FontSize="25" VerticalAlignment="Center" TextWrapping="Wrap"/>
+            <Button x:Name="option1" Grid.Row="1" Margin="2" FontSize="20" Click="Option1_Click"/>
+            <Button x:Name="option2" Grid.Row="2" Margin="2" FontSize="20" Click="Option2_Click"/>
+            <Button x:Name="option3" Grid.Row="3" Margin="2" FontSize="20" Click="Option3_Click"/>
+            <Button x:Name="option4" Grid.Row="4" Margin="2" FontSize="20" Click="Option4_Click"/>
+        </Grid>
     </Grid>
 </Page>
