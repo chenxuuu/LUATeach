@@ -34,13 +34,40 @@ namespace LUATeach.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            levels.Add(new Level { id = 1, title = "初识Lua", type = "知识点", infomation = "介绍Lua的基础知识。" });
-            levels.Add(new Level { id = 1, title = "初识Lua", type = "知识点", infomation = "介绍Lua的基础知识。" });
-            levels.Add(new Level { id = 1, title = "初识Lua", type = "知识点", infomation = "介绍Lua的基础知识。" });
-            levels.Add(new Level { id = 1, title = "初识Lua", type = "知识点", infomation = "介绍Lua的基础知识。" });
-            levels.Add(new Level { id = 1, title = "初识Lua", type = "知识点", infomation = "介绍Lua的基础知识。" });
+            for(int i=0;i< Global.Levels.LevelList.Count;i++)
+            {
+                levels.Add(new Level {
+                    id = i+1,
+                    title = Global.Levels.LevelList[i].title,
+                    type = Global.Levels.LevelList[i].type,
+                    infomation = Global.Levels.LevelList[i].infomation
+                });
+            }
 
             levelsList.ItemsSource = levels;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Level data = ((Button)sender).Tag as Level;
+            Global.Levels.selected = data.id - 1;
+
+            string page;
+            switch (Global.Levels.LevelList[Global.Levels.selected].levelType)
+            {
+                case Global.LevelType.choice:
+                    page = "IntroducePage";
+                    break;
+
+                default:
+                    page = null;
+                    break;
+            }
+            if(page != null)
+            {
+                this.NavigationService.Navigate(new Uri($"Pages/{page}.xaml", UriKind.Relative));
+            }
+
         }
     }
 

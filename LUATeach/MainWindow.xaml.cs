@@ -29,6 +29,7 @@ namespace LUATeach
         {
             VersionTextBlock.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             mainFrame.Navigate(new Uri("Pages/HomePage.xaml", UriKind.Relative));
+            //mainFrame.Navigate(new Uri("Pages/IntroducePage.xaml", UriKind.Relative));
         }
     }
 }

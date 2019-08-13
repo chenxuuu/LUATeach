@@ -27,7 +27,12 @@ namespace LUATeach.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Viewer.Markdown = "# title\r\n\r\ntext";
+            
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("Pages/LuaListPage.xaml", UriKind.Relative));
         }
     }
 }

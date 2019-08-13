@@ -11,6 +11,15 @@
       Loaded="Page_Loaded">
 
     <Grid>
-        <markdig:MarkdownViewer x:Name="Viewer"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="#FFE6E6E6" >
+            <TextBlock Text="" HorizontalAlignment="Center" FontSize="25"/>
+            <Button Name="backButton" HorizontalAlignment="Left" Content="返回" Click="BackButton_Click"/>
+        </Grid>
+        <markdig:MarkdownViewer Grid.Row="1" x:Name="Viewer" ScrollViewer.CanContentScroll="True"/>
     </Grid>
 </Page>
