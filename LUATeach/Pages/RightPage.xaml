@@ -4,10 +4,23 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:LUATeach.Pages"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="400"
-      Title="RightPage">
+      Title="RightPage"
+      Loaded="Page_Loaded">
     <Grid>
-        <TextBlock Text="right"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+            <fa:FontAwesome Icon="CheckCircle" Foreground="Green" FontSize="200"/>
+            <TextBlock Text="正确" HorizontalAlignment="Center" FontSize="40"/>
+        </StackPanel>
+        <TextBlock x:Name="explainTextBlock" Grid.Row="2" FontSize="15" TextWrapping="Wrap" Margin="10"/>
+        <Button Content="前往下一个部分" Grid.Row="3" FontSize="40" Margin="10" Click="Button_Click"/>
     </Grid>
 </Page>

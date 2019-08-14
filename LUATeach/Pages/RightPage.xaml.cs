@@ -24,5 +24,23 @@ namespace LUATeach.Pages
         {
             InitializeComponent();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            explainTextBlock.Text = Global.Levels.LevelList[Global.Levels.selected].explain;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Global.Levels.selected++;
+            if(Global.Levels.selected < Global.Levels.LevelList.Count)
+                this.NavigationService.Navigate(new Uri($"Pages/{Global.Levels.GetPage()}.xaml", UriKind.Relative));
+            else
+            {
+                Global.Levels.selected = 0;
+                MessageBox.Show("你已经看完这部分的所有内容啦~现在带你去列表页面");
+                this.NavigationService.Navigate(new Uri($"Pages/LuaListPage.xaml", UriKind.Relative));
+            }
+        }
     }
 }

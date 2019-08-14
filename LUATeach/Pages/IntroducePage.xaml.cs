@@ -55,7 +55,8 @@ namespace LUATeach.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            titleTextBlock.Text = Global.Levels.LevelList[Global.Levels.selected].title;
+            titleTextBlock.Text = $"{Global.Levels.selected + 1}. " +
+                $"{Global.Levels.LevelList[Global.Levels.selected].title}";
             Viewer.Markdown = Global.Levels.LevelList[Global.Levels.selected].question;
             questionTextBlock.Text = Global.Levels.LevelList[Global.Levels.selected].choiceTitle;
 
