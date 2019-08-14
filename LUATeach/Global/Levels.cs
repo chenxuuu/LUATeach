@@ -81,7 +81,10 @@ namespace LUATeach.Global
                 },
                 explain = "实践才是检验真理的唯一标准，要经常到运行lua脚本运行器测试代码哦~",
             },
-            new LevelTemple(),
+            new LevelTemple()
+            {
+                title = "后面还没写",
+            },
         };
 
         /// <summary>

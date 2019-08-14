@@ -139,6 +139,7 @@ namespace LUATeach.LuaEnv
                     lua.Global.SetInPath("sys", lua.DoString(Global.Utils.GetAssetsFileContent("/Assets/script/sys.lua"))[0]);
                     lua.DoString("apiStartTimer = CS.LUATeach.LuaEnv.LuaRunEnv.StartTimer");
                     lua.DoString("apiStopTimer = CS.LUATeach.LuaEnv.LuaRunEnv.StopTimer");
+                    lua.DoString("setRunMaxSeconds(-1)");
                     lua.DoString(script);
                 }
                 catch (Exception ex)

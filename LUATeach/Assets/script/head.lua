@@ -5,14 +5,24 @@
 math.randomseed(tostring(os.time()):reverse():sub(1, 6))
 
 --防止跑死循环，超时设置秒数自动结束，-1表示禁用
-runMaxSeconds = runType == "send" and 3 or -1
+local runMaxSeconds = 5
 local start = os.time()
+local runCount = 0
 function trace (event, line)
+    if runMaxSeconds > 0 then
+        runCount = runCount + 1
+        if runCount > 100000 then
+            error("运行代码量超过阈值")
+        end
+    end
     if runMaxSeconds > 0 and os.time() - start >=runMaxSeconds then
         error("代码运行超时")
     end
 end
 debug.sethook(trace, "l")
+function setRunMaxSeconds(n)
+    runMaxSeconds = n
+end
 
 --加上需要require的路径
 local rootPath = apiUtf8ToHex(apiGetPath())
