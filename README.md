@@ -8,6 +8,6 @@
 
 ## 下载
 
-release页面稳定版：[GitHub](https://github.com/chenxuuu/llcom/luateach/latest)
+release页面稳定版：[GitHub](https://github.com/chenxuuu/luateach/releases/latest)
 
 CI自动构建，快照版：[Appveyor Artifacts](https://ci.appveyor.com/project/chenxuuu/luateach/build/artifacts)
