@@ -22,8 +22,7 @@
                         Name="textEditor"
                         FontFamily="Consolas"
                         FontSize="10pt"
-                        ShowLineNumbers="True"
-                        Text="print('Hello World!')"/>
+                        ShowLineNumbers="True"/>
         <Button x:Name="HomeButton" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="回到首页" Click="HomeButton_Click">
             <fa:FontAwesome Icon="Home"/>
         </Button>

@@ -28,8 +28,8 @@ namespace LUATeach
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             VersionTextBlock.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            //mainFrame.Navigate(new Uri("Pages/HomePage.xaml", UriKind.Relative));
-            mainFrame.Navigate(new Uri("Pages/RightPage.xaml", UriKind.Relative));
+            mainFrame.Navigate(new Uri("Pages/HomePage.xaml", UriKind.Relative));
+            //mainFrame.Navigate(new Uri("Pages/RightPage.xaml", UriKind.Relative));
         }
     }
 }

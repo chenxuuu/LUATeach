@@ -58,7 +58,7 @@ namespace LUATeach.Pages
         {
             this.Dispatcher.Invoke(new Action(delegate
             {
-                LogTextBlock.AppendText((sender as string) + "\r\n");
+                LogTextBlock.AppendText(DateTime.Now.ToString("[HH:mm:ss:ffff]") + (sender as string) + "\r\n");
                 LogTextBlock.ScrollToEnd();
             }));
         }

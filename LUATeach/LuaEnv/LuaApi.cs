@@ -17,7 +17,7 @@ namespace LUATeach.LuaEnv
         {
             try
             {
-                PrintLuaLog(DateTime.Now.ToString("[HH:mm:ss:ffff]") + log, EventArgs.Empty);
+                PrintLuaLog(log, EventArgs.Empty);
             }
             catch { }
         }

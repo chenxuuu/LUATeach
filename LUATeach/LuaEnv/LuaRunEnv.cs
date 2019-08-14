@@ -52,7 +52,7 @@ namespace LUATeach.LuaEnv
                         }
                         catch(Exception le)
                         {
-                            LuaApi.PrintLog("回调报错：\r\n" + le.ToString());
+                            LuaApi.PrintLog("回调报错：\r\n" + le.Message);
                         }
                         if (tokenSource.IsCancellationRequested)
                             return;
@@ -143,7 +143,7 @@ namespace LUATeach.LuaEnv
                 }
                 catch (Exception ex)
                 {
-                    StopLua(ex.ToString());
+                    StopLua(ex.Message);
                 }
                 runTigger();
             }, tokenSource.Token);
