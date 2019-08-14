@@ -126,10 +126,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\WrongPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pages\HomePage.xaml.cs">
@@ -146,9 +142,6 @@
     </Compile>
     <Compile Include="Pages\RightPage.xaml.cs">
       <DependentUpon>RightPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\WrongPage.xaml.cs">
-      <DependentUpon>WrongPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
