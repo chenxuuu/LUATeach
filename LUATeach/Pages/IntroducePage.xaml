@@ -34,6 +34,9 @@
                     <Setter Property="Background" Value="#ffd3d3d3" />
                     <Setter Property="FontFamily" Value="Consolas, Microsoft YaHei UI" />
                 </Style>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="5" />
+                </Style>
             </markdig:MarkdownViewer.Resources>
         </markdig:MarkdownViewer>
         <Grid Grid.Row="2">
