@@ -20,7 +20,22 @@
             <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Center" FontSize="25"/>
             <Button Name="backButton" HorizontalAlignment="Left" Content="返回" Click="BackButton_Click"/>
         </Grid>
-        <markdig:MarkdownViewer Grid.Row="1" x:Name="Viewer" ScrollViewer.CanContentScroll="True"/>
+        <markdig:MarkdownViewer Grid.Row="1" x:Name="Viewer" ScrollViewer.CanContentScroll="True">
+            <markdig:MarkdownViewer.Resources>
+                <Style TargetType="{x:Type FlowDocument}" x:Key="{x:Static markdig:Styles.DocumentStyleKey}">
+                    <Setter Property="FontFamily" Value="Consolas, Microsoft YaHei UI" />
+                    <Setter Property="TextAlignment" Value="Left" />
+                </Style>
+                <Style TargetType="{x:Type Paragraph}" x:Key="{x:Static markdig:Styles.CodeBlockStyleKey}">
+                    <Setter Property="Background" Value="#ffd3d3d3" />
+                    <Setter Property="FontFamily" Value="Consolas, Microsoft YaHei UI" />
+                </Style>
+                <Style TargetType="{x:Type Run}" x:Key="{x:Static markdig:Styles.CodeStyleKey}">
+                    <Setter Property="Background" Value="#ffd3d3d3" />
+                    <Setter Property="FontFamily" Value="Consolas, Microsoft YaHei UI" />
+                </Style>
+            </markdig:MarkdownViewer.Resources>
+        </markdig:MarkdownViewer>
         <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
