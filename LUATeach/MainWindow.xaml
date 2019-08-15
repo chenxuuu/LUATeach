@@ -20,7 +20,7 @@
             <StatusBar DockPanel.Dock="Bottom">
                 <TextBlock Text="软件版本："/>
                 <TextBlock Name="VersionTextBlock"/>
-                <TextBlock Text="https://github.com/chenxuuu/LUATeach"/>
+                <Hyperlink NavigateUri="https://github.com/chenxuuu/LUATeach" Click="Hyperlink_Click">查看源码 / 反馈建议</Hyperlink>
             </StatusBar>
         </DockPanel>
     </Grid>

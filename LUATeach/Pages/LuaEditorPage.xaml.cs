@@ -44,7 +44,7 @@ namespace LUATeach.Pages
                     textEditor.SyntaxHighlighting = HighlightingLoader.Load(xshd, HighlightingManager.Instance);
                 }
             }
-            textEditor.Text = Global.Utils.GetAssetsFileContent("/Assets/script/default.lua");
+            textEditor.Text = Global.Settings.code;
             LuaEnv.LuaApi.PrintLuaLog += LuaApi_PrintLuaLog;
             LuaEnv.LuaRunEnv.LuaRunError += LuaRunEnv_LuaRunError;
         }
@@ -65,9 +65,10 @@ namespace LUATeach.Pages
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult back = MessageBox.Show("是否回到主页？当前编辑内容将全部丢失。", "提示", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            MessageBoxResult back = MessageBox.Show("是否回到主页？当前编辑内容将会自动保存。", "提示", MessageBoxButton.OKCancel, MessageBoxImage.Question);
             if (back == MessageBoxResult.OK)
             {
+                Global.Settings.code = textEditor.Text;
                 this.NavigationService.Navigate(new Uri("Pages/HomePage.xaml", UriKind.Relative));
             }
         }
@@ -86,6 +87,7 @@ namespace LUATeach.Pages
             var button = sender as Button;
             if(button.Content as string == "运行脚本")
             {
+                Global.Settings.code = textEditor.Text;
                 LuaApi_PrintLuaLog("脚本已开始运行", EventArgs.Empty);
                 LuaEnv.LuaRunEnv.New(textEditor.Text);
                 button.Content = "停止运行脚本";

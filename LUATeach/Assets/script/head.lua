@@ -55,6 +55,7 @@ end
 --重写print函数
 function print(...)
     arg = { ... }
+    if #arg == 0 then apiPrintLog("nil") return end
     local logAll = {}
     for i=1,select('#', ...) do
         table.insert(logAll, tostring(arg[i]))

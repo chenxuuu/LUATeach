@@ -21,7 +21,7 @@
             <ItemsControl x:Name="levelsList">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Tag="{Binding}" Background="White" Height="75" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,2" Click="Button_Click">
+                        <Button Tag="{Binding}" Background="White" Height="75" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="0,2" IsEnabled="{Binding enable}" Click="Button_Click">
                             <Grid VerticalAlignment="Center">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>

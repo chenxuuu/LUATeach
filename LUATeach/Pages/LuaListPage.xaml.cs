@@ -40,7 +40,8 @@ namespace LUATeach.Pages
                     id = i+1,
                     title = Global.Levels.LevelList[i].title,
                     type = Global.Levels.LevelList[i].type,
-                    infomation = Global.Levels.LevelList[i].infomation
+                    infomation = Global.Levels.LevelList[i].infomation,
+                    enable = i <= Global.Settings.lastPass,
                 });
             }
 
@@ -63,5 +64,6 @@ namespace LUATeach.Pages
         public string title { get; set; }
         public string type { get; set; }
         public string infomation { get; set; }
+        public bool enable { get; set; }
     }
 }

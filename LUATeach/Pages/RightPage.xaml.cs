@@ -28,6 +28,7 @@ namespace LUATeach.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             explainTextBlock.Text = Global.Levels.LevelList[Global.Levels.selected].explain;
+            Global.Settings.lastPass++;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

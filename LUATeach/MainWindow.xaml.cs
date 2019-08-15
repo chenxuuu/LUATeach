@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,20 @@ namespace LUATeach
             VersionTextBlock.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             mainFrame.Navigate(new Uri("Pages/HomePage.xaml", UriKind.Relative));
             //mainFrame.Navigate(new Uri("Pages/RightPage.xaml", UriKind.Relative));
+
+            //检查更新
+            Random r = new Random();//加上随机参数，确保获取的是最新数据
+            try
+            {
+                //AutoUpdaterDotNET.AutoUpdater.Start("https://luateach.wvvwvw.com/autoUpdate.xml?" + r.Next());
+            }
+            catch { }
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            Hyperlink link = sender as Hyperlink;
+            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
         }
     }
 }
