@@ -61,25 +61,153 @@ namespace LUATeach.Global
                     {
                         output += sender as string;
                     };
-                    LuaEnv.LuaApi.PrintLuaLog += print;//注册委托
-                    var lua = LuaEnv.LuaEnv.CreateLuaEnv();//新建lua虚拟机
-                    try
+                    
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv()) //新建lua虚拟机
                     {
-                        lua.DoString(s);//跑代码
+                        LuaEnv.LuaApi.PrintLuaLog += print;//注册委托
+                        try
+                        {
+                            lua.DoString(s);//跑代码
+                        }
+                        catch (Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        LuaEnv.LuaApi.PrintLuaLog -= print;//取消委托
+                        if(r != null)//如果有错误信息
+                            return r;
+                        if(output.ToUpper() == "HELLO WORLD!")
+                            return null;
+                        else
+                            return $"输出的结果不对，你输出的是：\r\n{output}";
                     }
-                    catch (Exception ex)
-                    {
-                        r = $"代码报错啦：{ex.Message}";
-                    }
-                    LuaEnv.LuaApi.PrintLuaLog -= print;//取消委托
-                    if(r != null)//如果有错误信息
-                        return r;
-                    if(output.ToUpper() == "HELLO WORLD!")
-                        return null;
-                    else
-                        return $"输出的结果不对，你输出的是：\r\n{output}";
                 },
                 explain = "实践才是检验真理的唯一标准，要经常到运行lua脚本运行器测试代码哦~",
+            },
+            new LevelTemple
+            {
+                title = "输出数据",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "尝试输出自己想输出的数据",
+                question = "在Lua中，可以使用`print`函数来打印你想要得到的结果。\r\n\r\n" +
+                "注：`函数`是指可以实现某些功能的子程序，可以使用`函数名(参数)`来执行。\r\n\r\n" +
+                "让我们试着输出一些其他东西吧！使用多个`print`函数，输出自己想输出的数据。",
+                code = "--你需要使用多个print函数来输出数据\r\n" +
+                "--输出任意数据都可以，参考上一节的写法\r\n" +
+                "print(\"12344\")\r\n",
+                check = (s) =>
+                {
+                    string r = null;
+                    int output = 0;
+                    EventHandler print = (sender,e) =>//print绑定的函数
+                    {
+                        output++;
+                    };
+
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv()) //新建lua虚拟机
+                    {
+                        LuaEnv.LuaApi.PrintLuaLog += print;//注册委托
+                        try
+                        {
+                            lua.DoString(s);//跑代码
+                        }
+                        catch (Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        LuaEnv.LuaApi.PrintLuaLog -= print;//取消委托
+                        if(r != null)//如果有错误信息
+                            return r;
+                        if(output > 1)
+                            return null;
+                        else
+                            return $"不是这样哦，你需要使用多个print函数来输出数据，输出任意数据都可以\r\n记住是多个print函数。";
+                    }
+                },
+                explain = "在Lua中，几乎所有数据都能使用print来输出。善于使用输出打印，可以帮助你调试代码哦。",
+            },
+            new LevelTemple
+            {
+                title = "number变量",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "初识变量",
+                question = "`变量`，就像一个桶，可以装你想要装的内容。这些内容可以是Lua包含的所有合法类型。\r\n\r\n" +
+                "例如：我想要新建一个桶，名叫`bucket`，在里面放入233这个数字，就可以像下面一样：\r\n\r\n" +
+                "```lua\r\nbucket = 233\r\n```\r\n\r\n" +
+                "让我们试着自己新建几个变量吧！\r\n\r\n" +
+                "你要做的事：\r\n\r\n" +
+                "新建变量`year`，并将变量的值设置为`1926`\r\n\r\n" +
+                "新建变量`month`，并将变量的值设置为`8`\r\n\r\n" +
+                "新建变量`day`，并将变量的值设置为`7`\r\n\r\n",
+                code = "--你需要使用多个赋值语句来新建变量\r\n",
+                check = (s) =>
+                {
+                    string r = null;
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        try
+                        {
+                            lua.DoString(s);//跑代码
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        if(r != null)//如果有错误信息
+                            return r;
+                        
+                        if((bool)lua.DoString("return year == 1926 and month == 8 and day == 7")[0])
+                            return null;
+                        else
+                            return "三个变量的结果不对哦";
+                    }
+                },
+                explain = "变量可以用来存储数据，以此来实现计算等复杂的功能。",
+            },
+            new LevelTemple
+            {
+                title = "输出变量",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "尝试输出变量的值",
+                question = "在Lua中，可以使用`print`函数来打印你想要得到的结果。\r\n\r\n" +
+                "同时在上一节，我们学会了新建变量和设置变量的值。\r\n\r\n" +
+                "让我们试着输出某个变量吧！使用`print`函数，输出已知变量。\r\n" +
+                "我们已知变量`num`为某个数字，试着输出它的值吧！",
+                code = "--已知num是一个变量，输出变量num的值\r\n",
+                check = (s) =>
+                {
+                    string r = null;
+                    string output = "";
+                    EventHandler print = (sender,e) =>//print绑定的函数
+                    {
+                        output += sender as string;
+                    };
+
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv()) //新建lua虚拟机
+                    {
+                        LuaEnv.LuaApi.PrintLuaLog += print;//注册委托
+                        try
+                        {
+                            lua.DoString("num = 93174928");
+                            lua.DoString(s);//跑代码
+                        }
+                        catch (Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        LuaEnv.LuaApi.PrintLuaLog -= print;//取消委托
+                        if(r != null)//如果有错误信息
+                            return r;
+                        if(output == "93174928")
+                            return null;
+                        else
+                            return $"输出的结果不对，你输出的是：\r\n{output}";
+                    }
+                },
+                explain = "学会使用打印来调试代码，是一项必备技能。",
             },
             new LevelTemple()
             {
