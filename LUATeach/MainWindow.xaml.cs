@@ -36,7 +36,7 @@ namespace LUATeach
             Random r = new Random();//加上随机参数，确保获取的是最新数据
             try
             {
-                //AutoUpdaterDotNET.AutoUpdater.Start("https://luateach.wvvwvw.com/autoUpdate.xml?" + r.Next());
+                AutoUpdaterDotNET.AutoUpdater.Start("https://luateach.wvvwvw.com/autoUpdate.xml?" + r.Next());
             }
             catch { }
         }
