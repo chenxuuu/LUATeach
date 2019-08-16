@@ -516,6 +516,27 @@ str =
                 },
                 explain = "下一节教你如何使用转义符号，存储特殊字符",
             },
+            new LevelTemple
+            {
+                title = "字符串知识点检查",
+                type = "小测验",
+                levelType = LevelType.choice,
+                infomation = "一道小测试题目",
+                question =
+                "经前面的学习，相信大家已经熟练掌握了字符串的使用方式\r\n\r\n" +
+                "那么，问题来了，如果我想定义一个字符串，内容如下，应该怎么做？\r\n\r\n" +
+                "```\r\n12\\3\"9\']]\r\n```",
+                choiceTitle = "下面选项中，正确的是？",
+                choices = new string[4]
+                {
+                    "str=[[12\\3\"9\']]]]",
+                    "str='12\\3\"9\']]'",
+                    "str=\"12\\\\3\\\"9\']]\"",
+                    "str=\'12\\\\3\"9\\\']]\'",
+                },
+                choice = 4,
+                explain = "该部分为基础，应熟练掌握",
+            },
         };
 
         /// <summary>
