@@ -45,7 +45,7 @@ namespace LUATeach.Global
             },
             new LevelTemple
             {
-                title = "世界你好！",
+                title = "世界你好",
                 type = "写代码",
                 levelType = LevelType.code,
                 infomation = "第一次亲自编写Lua代码",
@@ -61,7 +61,7 @@ namespace LUATeach.Global
                     {
                         output += sender as string;
                     };
-                    
+
                     using(var lua = LuaEnv.LuaEnv.CreateLuaEnv()) //新建lua虚拟机
                     {
                         LuaEnv.LuaApi.PrintLuaLog += print;//注册委托
@@ -158,7 +158,7 @@ namespace LUATeach.Global
                         }
                         if(r != null)//如果有错误信息
                             return r;
-                        
+
                         if((bool)lua.DoString("return year == 1926 and month == 8 and day == 7")[0])
                             return null;
                         else
@@ -212,9 +212,185 @@ namespace LUATeach.Global
                 },
                 explain = "学会使用打印来调试代码，是一项必备技能。",
             },
-            new LevelTemple()
+            new LevelTemple
             {
-                title = "后面还没写",
+                title = "算数运算符",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "对number变量进行计算",
+                question = "运算符是一个特殊的符号，用于告诉解释器执行特定的数学或逻辑运算。\r\n\r\n" +
+                "上一节中，新建的数字变量，我们称之为`number`类型的变量。\r\n\r\n" +
+                "本节我们来学习使用`算术运算符`，如下所示：\r\n\r\n" +
+                @"```
++ 加法
+- 减法
+* 乘法
+/ 除法
+% 取余，求出除法的余数
+^ 乘幂，计算次方
+- 负号，取负值
+```" + "\r\n\r\n"+
+                "我们可以通过以下实例来理解算术运算符的应用：\r\n\r\n" +
+                @"```lua
+a = 21
+b = 10
+c = a + b
+print('a + b 的值为 ', c )
+c = a - b
+print('a - b 的值为 ', c )
+c = a * b
+print('a * b 的值为 ', c )
+c = a / b
+print('a / b 的值为 ', c )
+c = a % b
+print('a % b 的值为 ', c )
+c = a^2
+print('a^2 的值为 ', c )
+c = -a
+print('-a 的值为 ', c )
+c = a * (b - a)
+print('a * (b - a) 的值为 ', c )
+```
+
+以上程序执行结果为：
+
+```
+a + b 的值为     31
+a - b 的值为     11
+a * b 的值为     210
+a / b 的值为     2.1
+a % b 的值为     1
+a^2 的值为     441
+-a 的值为     -21
+a * (b - a) 的值为     -231‬
+```
+
+你需要完成的事：
+
+已知，一个长方体的长宽高分别为`a`、`b`、`c`（单位米），
+
+且这个物体重量为`m`（单位克）
+
+请你新建一个变量`p`，并将物体的密度存入其中（单位g/m³）
+
+注：密度计算公式 密度 = 质量 / 体积
+",
+                code = "--你需要计算这个物体的密度，存入变量p\r\n" +
+                @"-- 下面几个变量是已知的值，不需要你来改动
+-- a = 132
+-- b = 230
+-- c = 31
+-- m = 18
+
+-- 你需要用代码，计算出密度，存入p中
+p = ",
+                check = (s) =>
+                {
+                    string r = null;
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        try
+                        {
+                            lua.DoString(@"a = 132
+b = 230
+c = 31
+m = 62419");
+                            lua.DoString(s);//跑代码
+                            lua.DoString(@"a = 132
+b = 230
+c = 31
+m = 62419");
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if((bool)lua.DoString("return p == m/(a*b*c)")[0])
+                            return null;
+                        else
+                            return "密度的结果不对。记得用公式来算，并且不要忘记括号哦";
+                    }
+                },
+                explain = "恭喜你理解了算数运算符",
+            },
+            new LevelTemple
+            {
+                title = "string变量",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "字符串变量",
+                question = "字符串（即string），就是一串文本数据，可以存储你要的文本。\r\n\r\n" +
+                "在第二节中，print出的数据就是一个字符串。\r\n\r\n" +
+                @"Lua 语言中字符串可以使用以下三种方式来表示：
+
+1. 单引号间的一串字符。
+2. 双引号间的一串字符。
+3. [[和]]间的一串字符。
+
+你可以参考下面的例子来深入理解：
+
+```lua
+--双引号间的一串字符
+str1 = " + "\"Lua\"" + @"
+--单引号间的一串字符
+str2 = 'Lua'
+--[[和]]间的一串字符
+str3 = [[Lua]]
+str4 = [[使用双括号时，甚至能包含换行数据
+换行了
+最后一行]]
+
+--输出所有字符串
+print(str1)
+print(str2)
+print(str3)
+print(str4)
+```
+
+输出结果：
+
+```
+Lua
+Lua
+Lua
+使用双括号时，甚至能包含换行数据
+换行了
+最后一行
+```
+
+你需要完成的事：
+
+新建三个变量`s1`、`s2`、`s3`
+
+分别存入字符串数据：`str`、`abc`、`233`",
+                code = "--新建三个字符串变量，并设置值\r\n" +
+                "s1 = \r\n",
+                check = (s) =>
+                {
+                    string r = null;
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        try
+                        {
+                            lua.DoString(s);//跑代码
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if((bool)lua.DoString("return s1 == 'str' and s2 == 'abc' and s3 == '233'")[0])
+                            return null;
+                        else
+                            return "三个变量的结果不对哦";
+                    }
+                },
+                explain = "下一节教你如何使用转义符号，存储特殊字符",
             },
         };
 
