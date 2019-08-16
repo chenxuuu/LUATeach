@@ -537,6 +537,96 @@ str =
                 choice = 4,
                 explain = "该部分为基础，应熟练掌握",
             },
+            new LevelTemple
+            {
+                title = "变量知识点检查",
+                type = "小测验",
+                levelType = LevelType.choice,
+                infomation = "一道小测试题目",
+                question =
+                "已知有下面两个新声明的变量：\r\n\r\n" +
+                "```\r\nvar1 = 233\r\nvar2 = \"233\"\r\n```",
+                choiceTitle = "下面描述的类型，正确的是？",
+                choices = new string[4]
+                {
+                    "var1是string，var2是number",
+                    "var1是string，var2是string",
+                    "var1是number，var2是number",
+                    "var1是number，var2是string",
+                },
+                choice = 4,
+                explain = "该部分为基础，应熟练掌握",
+            },
+            new LevelTemple
+            {
+                title = "string拼接",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "学会字符串拼接符号",
+                question = "字符串和字符串可以相加吗？可以！我们可以用拼接符号来将两个独立的字符串拼起来。\r\n\r\n" +
+                "我们使用`..`来表示字符串拼接符号，如下面的示例代码：\r\n\r\n" +
+                @"```lua
+print('abc'..'def')
+str1 = '123'
+str2 = '999'
+print(str1..str2)
+```
+
+输出结果如下：
+
+```
+abcdef
+123999
+```
+
+下面你要完成这个任务：
+
+已知三个字符串变量`s1`、`s2`、`s3`
+
+请将他们按顺序拼接起来，并使用pint输出
+",
+                code = "--已知三个字符串变量\r\n" +
+                "--s1=某字符串\r\n" +
+                "--s2=某字符串\r\n" +
+                "--s3=某字符串\r\n" +
+                "--请将它们拼起来，并用print输出结果\r\n" +
+                "print()",
+                check = (s) =>
+                {
+                    string r = null;
+                    string output = "";
+                    EventHandler print = (sender,e) =>//print绑定的函数
+                    {
+                        output += sender as string;
+                    };
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        LuaEnv.LuaApi.PrintLuaLog += print;//注册委托
+                        try
+                        {
+                            lua.DoString(@"
+s1 = 'sdfsdf'
+s2 = '98867uyerew'
+s3 = 'wrefsdf'
+");
+                            lua.DoString(s);//跑代码
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        LuaEnv.LuaApi.PrintLuaLog -= print;//取消委托
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if(output=="sdfsdf98867uyerewwrefsdf")
+                            return null;
+                        else
+                            return $"三个变量的结果不对哦，你输出的是：\r\n{output}";
+                    }
+                },
+                explain = "注意这种方式尽量少用，因为string需要连续的内存来存储。",
+            },
         };
 
         /// <summary>

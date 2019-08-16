@@ -1,7 +1,4 @@
-﻿using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -16,10 +13,6 @@ namespace LUATeach
     /// </summary>
     public partial class App : Application
     {
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-            AppCenter.Start("4798b661-328e-45c3-9a3e-aff6338e903a",typeof(Analytics), typeof(Crashes));
-        }
+
     }
 }
