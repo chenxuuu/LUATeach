@@ -32,13 +32,13 @@ namespace LUATeach.Global
                 "自动内存管理；只提供了一种通用类型的表（table），用它可以实现数组，哈希表，集合，对象；语言内置模式匹配；" +
                 "闭包(closure)；函数也可以看做一个值；提供多线程（协同进程，并非操作系统所支持的线程）支持；" +
                 "通过闭包和table可以很方便地支持面向对象编程所需要的一些关键机制，比如数据抽象，虚函数，继承和重载等。",
-                choiceTitle = "下面选项中，错误的是？",
+                choiceTitle = "下面选项中，正确的是？",
                 choices = new string[4]
                 {
-                    "Lua是一种脚本语言",
-                    "Lua是使用C语言编写的",
-                    "Lua是脚本引擎中运行最慢的",
-                    "Lua可以实现面向对象的编程",
+                    "Lua不是一种脚本语言",
+                    "Lua不是使用C语言编写的",
+                    "Lua不是脚本引擎中运行最慢的",
+                    "Lua不可以实现面向对象的编程",
                 },
                 choice = 3,
                 explain = "Lua在目前所有脚本引擎中，速度几乎是最快的。",
@@ -50,8 +50,8 @@ namespace LUATeach.Global
                 levelType = LevelType.code,
                 infomation = "第一次亲自编写Lua代码",
                 question = "学习Lua，与学习其他语言一样，需要熟能生巧。现在我们来尝试编写第一个Lua程序吧！\r\n\r\n" +
-                "在下面的代码区域，补全代码，使代码输出`Hello World!`\r\n\r\n" +
-                "你要做的事：确保输入法在英文状态下；在下面代码的两个括号间，添加`\"Hello World!\"`内容。",
+                "在下面的代码区域，补全代码，使代码输出`Hello World`\r\n\r\n" +
+                "你要做的事：确保输入法在英文状态下；在下面代码的两个括号间，添加`\"Hello World\"`内容。",
                 code = "print()",
                 check = (s) =>
                 {
@@ -76,7 +76,7 @@ namespace LUATeach.Global
                         LuaEnv.LuaApi.PrintLuaLog -= print;//取消委托
                         if(r != null)//如果有错误信息
                             return r;
-                        if(output.ToUpper() == "HELLO WORLD!")
+                        if(output.ToUpper().Replace(" ","") == "HELLOWORLD")
                             return null;
                         else
                             return $"输出的结果不对，你输出的是：\r\n{output}";
@@ -133,7 +133,7 @@ namespace LUATeach.Global
                 type = "写代码",
                 levelType = LevelType.code,
                 infomation = "初识变量",
-                question = "`变量`，就像一个桶，可以装你想要装的内容。这些内容可以是Lua包含的所有合法类型。\r\n\r\n" +
+                question = "`变量`，可以看作是一个桶，在里面装你想要装的内容。这些内容可以是Lua包含的所有合法类型。\r\n\r\n" +
                 "例如：我想要新建一个桶，名叫`bucket`，在里面放入233这个数字，就可以像下面一样：\r\n\r\n" +
                 "```lua\r\nbucket = 233\r\n```\r\n\r\n" +
                 "让我们试着自己新建几个变量吧！\r\n\r\n" +
@@ -141,7 +141,8 @@ namespace LUATeach.Global
                 "新建变量`year`，并将变量的值设置为`1926`\r\n\r\n" +
                 "新建变量`month`，并将变量的值设置为`8`\r\n\r\n" +
                 "新建变量`day`，并将变量的值设置为`7`\r\n\r\n",
-                code = "--你需要使用多个赋值语句来新建变量\r\n",
+                code = "--你需要使用多个赋值语句来新建变量\r\n" +
+                "year = \r\n",
                 check = (s) =>
                 {
                     string r = null;
@@ -176,7 +177,9 @@ namespace LUATeach.Global
                 "同时在上一节，我们学会了新建变量和设置变量的值。\r\n\r\n" +
                 "让我们试着输出某个变量吧！使用`print`函数，输出已知变量。\r\n" +
                 "我们已知变量`num`为某个数字，试着输出它的值吧！",
-                code = "--已知num是一个变量，输出变量num的值\r\n",
+                code = "--已知num是一个变量，输出变量num的值\r\n" +
+                "--已知 num = 某个值\r\n" +
+                "print(换成你要输出的东西)",
                 check = (s) =>
                 {
                     string r = null;
