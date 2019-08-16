@@ -169,6 +169,43 @@ namespace LUATeach.Global
             },
             new LevelTemple
             {
+                title = "交换变量",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "用变量做些事情",
+                question = 
+                "你要做的事：\r\n\r\n" +
+                "已知变量`a`和`b`，请交换它们所存储的值",
+                code = "--你需要新建变量来完成这个题目\r\n" +
+                "--a和b均是已经声明过的变量\r\n" +
+                "a = \r\n",
+                check = (s) =>
+                {
+                    string r = null;
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        try
+                        {
+                            lua.DoString("a=25245324\r\nb=4332421");
+                            lua.DoString(s);//跑代码
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if((bool)lua.DoString("return b==25245324 and a==4332421")[0])
+                            return null;
+                        else
+                            return "结果不对哦";
+                    }
+                },
+                explain = "变量可以用来存储数据，以此来实现计算等复杂的功能。",
+            },
+            new LevelTemple
+            {
                 title = "输出变量",
                 type = "写代码",
                 levelType = LevelType.code,
@@ -367,7 +404,9 @@ Lua
 
 分别存入字符串数据：`str`、`abc`、`233`",
                 code = "--新建三个字符串变量，并设置值\r\n" +
-                "s1 = \r\n",
+                "--你可以使用任意方式赋值\r\n" +
+                "s1 = \"str\"\r\n" +
+                "s2 = ",
                 check = (s) =>
                 {
                     string r = null;
@@ -388,6 +427,91 @@ Lua
                             return null;
                         else
                             return "三个变量的结果不对哦";
+                    }
+                },
+                explain = "下一节教你如何使用转义符号，存储特殊字符",
+            },
+            new LevelTemple
+            {
+                title = "转义字符",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "学习如何使用",
+                question = @"在上一节中，我们学习了如何声明字符串。
+
+但是我们有时候会遇到一些特殊的问题，如：如何输出单引号和双引号？如何输出回车换行？
+
+也许我们可以用下面的方式简单规避，输出单引号时，声明字符串用双引号括起来，像下面这样
+
+```lua
+str = "+"\"'\""+@"
+```
+
+同理，输出双引号时，声明字符串用单引号括起来，像下面这样
+
+```lua
+str = '"+"\""+@"'
+```
+
+但是，这样会出现一个问题：如何同时显示单引号和双引号？这里就需要转义字符登场了。
+
+转义字符用于表示不能直接显示的字符，比如后退键、回车键、等。
+
+以 `\` 开头的都是转义字符，下面时常用的转义字符格式：
+
+|转义字符|含义|
+|-|-|
+|\n|换行(LF),将当前位置移到下一行开头|
+|\r|回车(CR),将当前位置移到本行开头|
+|\\\\|反斜杠字符\\|
+|\\'|单引号|
+|\\"+"\""+@"|双引号|
+|\0|空字符(NULL)|
+|\ddd|1到3位八进制数所代表的任意字符|
+|\xhh|1到2位十六进制所代表的任意字符|
+
+例如，如果我们想给str赋值一个单引号，一个双引号，那么我们可以这样写：
+
+```lua
+str = "+"\"\\'\\\"\""+@"
+```
+
+下面就是做题部分了，你需要实现下面的功能：
+
+新建一个变量`str`，给`str`赋值为
+
+`"+"ab\\cd\"ef\'g\\h]]"+@"`
+",
+                code = @"--这里为了让你理解得更好，举个例子
+--比如我需要给s变量赋值下面的字符串
+--1122\4455'ass"+"\""+@"233
+--那么我们可以写成下面这样：
+s = "+"\""+@"1122\\4455\'ass"+"\\\""+@"233"+"\""+@"
+
+--下面就由你来完成题目的要求了
+str = 
+",
+                check = (s) =>
+                {
+                    string r = null;
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        try
+                        {
+                            lua.DoString(s);//跑代码
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if((bool)lua.DoString("return str == [[ab\\cd\"ef\'g\\h]]..']]'")[0])
+                            return null;
+                        else
+                            return "str变量的结果不对哦，你现在的值是\r\n" + 
+                            (string)lua.DoString("return type(str) == \"string\" and str or \"str不是字符串\"")[0];
                     }
                 },
                 explain = "下一节教你如何使用转义符号，存储特殊字符",
