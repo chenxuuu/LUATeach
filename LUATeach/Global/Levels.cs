@@ -583,7 +583,7 @@ abcdef
 
 已知三个字符串变量`s1`、`s2`、`s3`
 
-请将他们按顺序拼接起来，并使用pint输出
+请将他们按顺序拼接起来，并使用print输出结果
 ",
                 code = "--已知三个字符串变量\r\n" +
                 "--s1=某字符串\r\n" +
@@ -622,10 +622,152 @@ s3 = 'wrefsdf'
                         if(output=="sdfsdf98867uyerewwrefsdf")
                             return null;
                         else
-                            return $"三个变量的结果不对哦，你输出的是：\r\n{output}";
+                            return $"结果不对哦，你输出的是：\r\n{output}";
                     }
                 },
                 explain = "注意这种方式尽量少用，因为string需要连续的内存来存储。",
+            },
+            new LevelTemple
+            {
+                title = "number转string",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "学会tostring的用法",
+                question = @"上面一节学习了如何拼接字符串，这个方法固然很好用，但是有时候我们会遇到一个需求，那就是把number类型的变量和string类型的变量拼接起来，组成一个新的string
+
+比如下面的变量`n`和`s`，如何拼接起来呢？
+
+```lua
+n = 123
+s = 'm/s'
+```
+
+我们可以直接将`number`类型的变量`n`转换成string类型的值，这样就可以拼接了
+
+使用`tostring(value)`函数即可实现这一操作：
+
+```lua
+n = 123
+s = 'm/s'
+
+result = tostring(n)..s
+```
+
+下面你要完成这个任务：
+
+已知三个字符串变量`n1`、`s`、`n2`
+
+请将他们按顺序拼接起来，并使用print输出结果
+",
+                code = "--已知三个变量\r\n" +
+                "--n1=某number类型变量\r\n" +
+                "--s =某string类型变量\r\n" +
+                "--n2=某number类型变量\r\n" +
+                "--请将它们拼起来，并用print输出结果\r\n" +
+                "print()",
+                check = (s) =>
+                {
+                    string r = null;
+                    string output = "";
+                    EventHandler print = (sender,e) =>//print绑定的函数
+                    {
+                        output += sender as string;
+                    };
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        LuaEnv.LuaApi.PrintLuaLog += print;//注册委托
+                        try
+                        {
+                            lua.DoString(@"
+n1 = 21983213
+s = '98867uyerew'
+n2 = 48743293
+");
+                            lua.DoString(s);//跑代码
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        LuaEnv.LuaApi.PrintLuaLog -= print;//取消委托
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if(output=="2198321398867uyerew48743293")
+                            return null;
+                        else
+                            return $"结果不对哦，你输出的是：\r\n{output}";
+                    }
+                },
+                explain = "注意，不同类型可是不一样的哦",
+            },
+            new LevelTemple
+            {
+                title = "string转number",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "学会tonumber的用法",
+                question = @"上面一节学习了如何将number转成string，这一节我们来学习如何将string转成number
+
+比如下面的变量`s`，存储的内容是一个字符串，但是代表了一个数字，如何转成number再与n相加计算呢？
+
+```lua
+n = 123
+s = '2333'
+```
+
+我们可以直接将`string`类型的变量`s`转换成number类型的值，这样就可以计算了
+
+使用`tonumber(value)`函数即可实现这一操作：
+
+```lua
+n = 123
+s = '2333'
+
+result = tonumber(s) + n
+```
+
+下面你要完成这个任务：
+
+已知三个字符串变量`s1`、`s2`、`s3`，其内容均为纯数字
+
+请计算他们的算术和，并将结果转成字符串，赋值给新建的变量`result`
+",
+                code = "--已知三个变量\r\n" +
+                "--s1 = 某string类型变量\r\n" +
+                "--s2 = 某string类型变量\r\n" +
+                "--s3 = 某string类型变量\r\n" +
+                "--请计算他们的算术和，\r\n" +
+                "--并将结果转成字符串，赋值给新建的变量result\r\n" +
+                "\r\n\r\nresult = ",
+                check = (s) =>
+                {
+                    string r = null;
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        try
+                        {
+                            lua.DoString(@"
+s1 = '4352424'
+s2 = '48743293'
+s3 = '214513'
+");
+                            lua.DoString(s);//跑代码
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if((bool)lua.DoString("return result == '53310230'")[0])
+                            return null;
+                        else
+                            return $"结果不对哦，请重新检查";
+                    }
+                },
+                explain = "string和number互相转换，你应该掌握了这个简单的内容",
             },
         };
 
