@@ -699,7 +699,7 @@ n2 = 48743293
                             return $"结果不对哦，你输出的是：\r\n{output}";
                     }
                 },
-                explain = "注意，不同类型可是不一样的哦",
+                explain = "小知识：tostring函数几乎可将所有其他类型都转成string",
             },
             new LevelTemple
             {
@@ -768,6 +768,189 @@ s3 = '214513'
                     }
                 },
                 explain = "string和number互相转换，你应该掌握了这个简单的内容",
+            },
+            new LevelTemple
+            {
+                title = "nil",
+                type = "小测验",
+                levelType = LevelType.choice,
+                infomation = "了解nil",
+                question =
+                @"nil 类型表示没有任何有效值，只要是没有声明的值，它就是nil
+
+比如我打印一个没有声明的值，便会输出nil：
+
+```lua
+ccc = 233
+print(ccc)
+print(aaa)
+```
+
+输出：
+
+```
+233
+nil
+```
+
+下面问题来了，运行以下代码，将会输出什么结果？
+
+```lua
+a = 1
+b = '2'
+c = a
+print(a,b,c,d)
+```
+",
+                choiceTitle = "下面结果正确的是？",
+                choices = new string[4]
+                {
+                    "1  2  nil nil",
+                    "1  2  2  nil",
+                    "1  2  1  2",
+                    "1  2  1  nil",
+                },
+                choice = 4,
+                explain = "nil 类型表示没有任何有效值",
+            },
+            new LevelTemple
+            {
+                title = "布尔型和比较符号",
+                type = "小测验",
+                levelType = LevelType.choice,
+                infomation = "了解boolean与比较符号判断",
+                question =
+                @"布尔型（boolean）只有两个可选值：`true`（真） 和 `false`（假）
+
+Lua 把 false 和 nil 看作是`false`，其他的都为`true`（包括0这个值，也是相当于`true`）
+
+Lua 中也有许多的`关系运算符`，用于比较大小或比较是否相等，符号及其含义如下表：
+
+|符号|含义|
+|-|-|
+|==|等于，检测两个值是否相等，相等返回 true，否则返回 false|
+|~=|不等于，检测两个值是否相等，相等返回 false，否则返回 true|
+|>|大于，如果左边的值大于右边的值，返回 true，否则返回 false|
+|<|小于，如果左边的值大于右边的值，返回 false，否则返回 true|
+|>=|大于等于，如果左边的值大于等于右边的值，返回 true，否则返回 false|
+|<=|小于等于， 如果左边的值小于等于右边的值，返回 true，否则返回 false|
+
+我们可以通过以下实例来更加透彻的理解关系运算符的应用：
+
+```lua
+a = 21
+b = 10
+print('==的结果',a==b)
+print('~=的结果',a~=b)
+print('>的结果',a>b)
+print('<的结果',a<b)
+print('>=的结果',a>=b)
+print('<=的结果',a<=b)
+```
+
+上面代码将会输出如下结果：
+
+```
+==的结果    false
+~=的结果    true
+>的结果    true
+<的结果    false
+>=的结果    true
+<=的结果    false
+```
+
+下面问题来了，运行以下代码，将会输出什么结果？
+
+```lua
+a = 1
+b = '1'
+c = a
+d = 2
+
+print(
+a == b,
+c == a,
+a ~= b,
+d <= c
+)
+```
+",
+                choiceTitle = "下面结果正确的是？",
+                choices = new string[4]
+                {
+                    "运行报错",
+                    "false false true true",
+                    "false true false false",
+                    "false true true false",
+                },
+                choice = 4,
+                explain = "布尔型一般被用来作为判断依据使用，是编程中重要的部分",
+            },
+            new LevelTemple
+            {
+                title = "逻辑运算符",
+                type = "小测验",
+                levelType = LevelType.choice,
+                infomation = "了解逻辑运算符",
+                question =
+                @"逻辑运算符基于布尔型的值来进行计算，并给出结果，下表列出了 Lua 语言中的常用逻辑运算符：
+
+|符号|含义|
+|-|-|
+|and|逻辑与操作符。 若 A 为 false，则返回 A，否则返回 B|
+|or|逻辑或操作符。 若 A 为 true，则返回 A，否则返回 B|
+|not|逻辑非操作符。与逻辑运算结果相反，如果条件为 true，逻辑非为 false|
+
+我们可以通过以下实例来更加透彻的理解逻辑运算符的应用：
+
+```lua
+print('true and false的结果',true and false)
+print('true or false的结果',true or false)
+print('true and true的结果',true and true)
+print('false or false的结果',false or false)
+print('not false的结果',not false)
+print('123 and 345的结果',123 and 345)
+print('nil and true的结果',nil and true)
+```
+
+上面代码将会输出如下结果：
+
+```
+true and false的结果    false
+true or false的结果    true
+true and true的结果    true
+false or false的结果    false
+not false的结果    true
+123 and 345的结果    345
+nil and true的结果    nil
+```
+
+下面问题来了，运行以下代码，将会输出什么结果？
+
+```lua
+a = 1
+b = '1'
+c = 0
+
+print(
+a and b,
+c or a,
+not b,
+d and c
+1 < 2 and 3 > 2
+)
+```
+",
+                choiceTitle = "下面结果正确的是？",
+                choices = new string[4]
+                {
+                    "运行报错",
+                    "1 1 true nil true",
+                    "1 1 false nil false",
+                    "1 0 false nil true",
+                },
+                choice = 4,
+                explain = "利用逻辑运算符，可以实现多个条件的共同判断",
             },
         };
 
