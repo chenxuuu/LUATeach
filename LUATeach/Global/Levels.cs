@@ -177,8 +177,8 @@ namespace LUATeach.Global
                 "你要做的事：\r\n\r\n" +
                 "已知变量`a`和`b`，请交换它们所存储的值",
                 code = "--你需要新建变量来完成这个题目\r\n" +
-                "--a和b均是已经声明过的变量\r\n" +
-                "a = \r\n",
+                "--a和b均是已经声明过的变量\r\n\r\n\r\n" +
+                "a = \r\nb = ",
                 check = (s) =>
                 {
                     string r = null;
@@ -655,9 +655,11 @@ result = tostring(n)..s
 
 下面你要完成这个任务：
 
-已知三个字符串变量`n1`、`s`、`n2`
+已知三个变量`n1`、`s`、`n2`
 
-请将他们按顺序拼接起来，并使用print输出结果
+然后将他们按顺序拼接起来，并使用print输出结果
+
+小提示：在某些情况下，Lua会自动将number类型转换成string类型
 ",
                 code = "--已知三个变量\r\n" +
                 "--n1=某number类型变量\r\n" +
@@ -763,6 +765,8 @@ s3 = '214513'
 
                         if((bool)lua.DoString("return result == '53310230'")[0])
                             return null;
+                        else if((bool)lua.DoString("return type(result) == 'number'")[0])
+                            return $"注意审题，result需要是string类型的，现在它是number";
                         else
                             return $"结果不对哦，请重新检查";
                     }
@@ -952,6 +956,274 @@ d and c
                 choice = 4,
                 explain = "利用逻辑运算符，可以实现多个条件的共同判断",
             },
+            new LevelTemple
+            {
+                title = "检验大小",
+                type = "小测验",
+                levelType = LevelType.choice,
+                infomation = "判断数字是否在这个区间内",
+                question =
+                @"题目：如果已知number变量`n`，那么如果需要判断`n`是否符合下面的条件：
+
+3<n≤10
+
+以下代码正确的是？
+
+（返回true即为符合要求）
+",
+                choiceTitle = "下面结果正确的是？",
+                choices = new string[4]
+                {
+                    "n < 3 and n >= 10",
+                    "n > 10 or n <= 3",
+                    "n <= 10 or n > 3",
+                    "n <= 10 and n > 3",
+                },
+                choice = 4,
+                explain = "利用逻辑运算符，可以实现多个条件的共同判断",
+            },
+            new LevelTemple
+            {
+                title = "条件表达",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "初步学习if语句",
+                question = @"上面一节学习了布尔类型，那么这个需要用到哪里呢？我们需要用它来进行某些判断。
+
+在Lua中，可以使用`if`语句来进行判断，如下面所举例的代码，可以判断`n`是否为小于10的数：
+
+```lua
+n = 5
+if n < 5 then
+    print('n小于10')
+end
+```
+
+我们整理一下，实际上if语句就是如下结构：
+
+```lua
+if 条件 then
+    符合条件的代码
+end
+```
+
+下面是你需要完成的事：
+
+已知变量`n`，请判断n是否为奇数，如果是，请给`n`的值加上1
+
+
+```
+如果你觉得有难度，请查看下面的提示：
+求出`n`除以2的余数：n % 2
+给`n`的值加上1：n = n + 1
+```
+",
+                code = "--已知一个number变量n\r\n" +
+                "--n = 某number类型变量\r\n\r\n" +
+                @"if 你的条件 then
+    要做的事
+end",
+                check = (s) =>
+                {
+                    string r = null;
+                    bool pass = false;
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        try
+                        {
+                            for(int i=1;i<=10;i++)
+                            {
+                                lua.DoString($"n={i}");
+                                lua.DoString(s);//跑代码
+
+                                if (!(bool)lua.DoString($"return n == ({i}%2==1 and {i}+1 or {i})")[0])
+                                {
+                                    r = $"当n为{i}时，结果不对";
+                                    break;
+                                }
+
+                                if(i==10)//通过检测
+                                    pass = true;
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if(pass)
+                            return null;
+                        else
+                            return $"这个代码无法通过验证哦，请检查";
+                    }
+                },
+                explain = "使用if可以完成逻辑判断",
+            },
+            new LevelTemple
+            {
+                title = "多条件判断",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "初步学习if else语句",
+                question = @"上面一节学习了简单的if语句写法，这一节我们来学习多条件分支语句
+
+在Lua中，可以使用`if`语句来进行判断，同时可以使用else语句，表示多个分支判断
+
+```lua
+if 条件1 then
+    满足条件1
+elseif 条件2 then
+    不满足条件1，但是满足条件2
+else
+    前面条件全都不满足
+end
+```
+
+举个例子，比如有一个数字`n`，
+
+当它大于等于0、小于5时，输出`太小`，
+
+当它大于等于5、小于10时，输出`适中`，
+
+当它大于等于10时，输出`太大`，
+
+那么代码就像如下这样：
+
+```lua
+if n >= 0 and n < 5 then
+    print('太小')
+elseif n >= 5 and n < 10 then
+    print('适中')
+elseif n >= 10 then
+    print('太大')
+end
+```
+
+注意：`else`和`elseif`都是可选的，可有可无，但是`end`不能省略
+
+下面是你需要完成的事：
+
+已知变量`n`，请判断n是否为奇数，
+
+如果是，请给`n`的值加上1
+
+如果不是，请将`n`的值改为原来的两倍
+",
+                code = "--已知一个number变量n\r\n" +
+                "--n = 某number类型变量\r\n\r\n" +
+                @"if 你的条件 then
+    要做的事
+else
+    要做的事
+end",
+                check = (s) =>
+                {
+                    string r = null;
+                    bool pass = false;
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        try
+                        {
+                            for(int i=1;i<=10;i++)
+                            {
+                                lua.DoString($"n={i}");
+                                lua.DoString(s);//跑代码
+
+                                if (!(bool)lua.DoString($"return n == ({i}%2==1 and {i}+1 or {i}*2)")[0])
+                                {
+                                    r = $"当n为{i}时，结果不对";
+                                    break;
+                                }
+
+                                if(i==10)//通过检测
+                                    pass = true;
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if(pass)
+                            return null;
+                        else
+                            return $"这个代码无法通过验证哦，请检查";
+                    }
+                },
+                explain = "使用if可以完成逻辑判断",
+            },
+            new LevelTemple
+            {
+                title = "判断三角形合法性",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "关于条件判断的小测试",
+                question = @"你需要使用前面几章的知识，来完成下面的题目
+
+已知三个number类型的变量`a`、`b`、`c`，分别代表三根木棒的长度
+
+请判断，使用这三根木棒，是否可以组成一个三角形（两短边之和大于第三边）
+
+如果可以组成，就新建一个变量result，并赋值为true
+",
+                code = @"--请判断三角形是否合法
+--a = 某number类型变量
+--b = 某number类型变量
+--c = 某number类型变量
+-- 还需要新建一个result变量存储结果
+
+
+
+
+",
+                check = (s) =>
+                {
+                    string r = null;
+                    bool pass = false;
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        try
+                        {
+                            for(int i=1;i<=10;i++)
+                            {
+                                for(int j = 1; j <= 10; j++)
+                                {
+                                    for(int k=1;k<=10;k++)
+                                    {
+                                        lua.DoString($"a={i}\r\nb={j}\r\nc={k}");
+                                        lua.DoString(s);//跑代码
+
+                                        if (!(bool)lua.DoString($"return result == (a+b>=c and b+c>=a and a+c>=b)")[0])
+                                        {
+                                            r = $"当a为{i}、b为{j}、c为{k}时，result结果不对";
+                                            break;
+                                        }
+                                    }
+                                }
+                                if(i==10)//通过检测
+                                    pass = true;
+                            }
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if(pass)
+                            return null;
+                        else
+                            return $"这个代码无法通过验证哦，请检查";
+                    }
+                },
+                explain = "实践出真知",
+            },
+
         };
 
         /// <summary>
