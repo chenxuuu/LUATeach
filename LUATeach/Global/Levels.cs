@@ -51,7 +51,8 @@ namespace LUATeach.Global
                 infomation = "第一次亲自编写Lua代码",
                 question = "学习Lua，与学习其他语言一样，需要熟能生巧。现在我们来尝试编写第一个Lua程序吧！\r\n\r\n" +
                 "在下面的代码区域，补全代码，使代码输出`Hello World`\r\n\r\n" +
-                "你要做的事：确保输入法在英文状态下；在下面代码的两个括号间，添加`\"Hello World\"`内容。",
+                "你要做的事：确保输入法在英文状态下；在下面代码的两个括号间，添加`\"Hello World\"`内容\r\n" +
+                "注意：--开头的语句，后面的内容都是注释，在代码里不会运行，仅用来讲解。在你自己编程时也需要使用注释，来防止自己忘记代码表达的含义。",
                 code = "print()",
                 check = (s) =>
                 {
@@ -166,6 +167,116 @@ namespace LUATeach.Global
                     }
                 },
                 explain = "变量可以用来存储数据，以此来实现计算等复杂的功能。",
+            },
+            new LevelTemple
+            {
+                title = "nil",
+                type = "知识点",
+                levelType = LevelType.choice,
+                infomation = "了解nil",
+                question =
+                @"nil 类型表示没有任何有效值，只要是没有声明的值，它就是nil
+
+比如我打印一个没有声明的值，便会输出nil：
+
+```lua
+ccc = 233
+print(ccc)
+print(aaa)
+```
+
+输出：
+
+```
+233
+nil
+```
+
+下面问题来了，运行以下代码，将会输出什么结果？
+
+```lua
+a = 1
+b = '2'
+c = a
+print(a,b,c,d)
+```
+",
+                choiceTitle = "下面结果正确的是？",
+                choices = new string[4]
+                {
+                    "1  2  nil nil",
+                    "1  2  2  nil",
+                    "1  2  1  2",
+                    "1  2  1  nil",
+                },
+                choice = 4,
+                explain = "nil 类型表示没有任何有效值",
+            },
+            new LevelTemple
+            {
+                title = "赋值语句",
+                type = "知识点",
+                levelType = LevelType.choice,
+                infomation = "介绍Lua的赋值操作",
+                question = @"赋值是改变一个变量值的最基本的方法。
+
+如下面一样，使用等号对左边的变量进行赋值
+
+```lua
+n = 2
+n = 3
+n = n + 1
+b = n
+```
+
+Lua 可以对多个变量同时赋值，变量用逗号分开，赋值语句右边的值会依次赋给左边的变量。 
+
+```lua
+n = 1
+a, b = 10, 2*n
+```
+
+当左右值的数量不一致时，Lua会进行下面的设定
+
+变量个数 > 值的个数：按变量个数补足nil
+
+变量个数 < 值的个数：多余的值会被忽略
+
+下面的例子可以展示这种设定：
+
+```lua
+a, b, c = 0, 1
+print(a,b,c)
+--输出0   1   nil
+ 
+a, b = a+1, b+1, b+2
+print(a,b)
+--输出1   2
+ 
+a, b, c = 0
+print(a,b,c)
+--输出0   nil   nil
+```
+
+下面我们使用如下代码，由你来判断正确的输出结果是什么：
+
+```lua
+a,b,c = 1,2,3
+a,c = a+1,b
+d = c,b
+print(a,b,c,d)
+```
+",
+                choiceTitle = "下面结果中，正确的是？",
+                choices = new string[4]
+                {
+                    "2 nil 3 2",
+                    "2 2 3 2",
+                    "1 nil 2 2",
+                    "2 2 2 2",
+                },
+                choice = 4,
+                explain = "变量赋值是基础语法，需要熟练掌握",
             },
             new LevelTemple
             {
@@ -775,52 +886,8 @@ s3 = '214513'
             },
             new LevelTemple
             {
-                title = "nil",
-                type = "小测验",
-                levelType = LevelType.choice,
-                infomation = "了解nil",
-                question =
-                @"nil 类型表示没有任何有效值，只要是没有声明的值，它就是nil
-
-比如我打印一个没有声明的值，便会输出nil：
-
-```lua
-ccc = 233
-print(ccc)
-print(aaa)
-```
-
-输出：
-
-```
-233
-nil
-```
-
-下面问题来了，运行以下代码，将会输出什么结果？
-
-```lua
-a = 1
-b = '2'
-c = a
-print(a,b,c,d)
-```
-",
-                choiceTitle = "下面结果正确的是？",
-                choices = new string[4]
-                {
-                    "1  2  nil nil",
-                    "1  2  2  nil",
-                    "1  2  1  2",
-                    "1  2  1  nil",
-                },
-                choice = 4,
-                explain = "nil 类型表示没有任何有效值",
-            },
-            new LevelTemple
-            {
                 title = "布尔型和比较符号",
-                type = "小测验",
+                type = "知识点",
                 levelType = LevelType.choice,
                 infomation = "了解boolean与比较符号判断",
                 question =
@@ -893,7 +960,7 @@ d <= c
             new LevelTemple
             {
                 title = "逻辑运算符",
-                type = "小测验",
+                type = "知识点",
                 levelType = LevelType.choice,
                 infomation = "了解逻辑运算符",
                 question =
@@ -959,7 +1026,7 @@ d and c
             new LevelTemple
             {
                 title = "检验大小",
-                type = "小测验",
+                type = "知识点",
                 levelType = LevelType.choice,
                 infomation = "判断数字是否在这个区间内",
                 question =
@@ -1159,7 +1226,7 @@ end",
             new LevelTemple
             {
                 title = "判断三角形合法性",
-                type = "写代码",
+                type = "小测验",
                 levelType = LevelType.code,
                 infomation = "关于条件判断的小测试",
                 question = @"你需要使用前面几章的知识，来完成下面的题目
@@ -1223,7 +1290,239 @@ end",
                 },
                 explain = "实践出真知",
             },
+            new LevelTemple
+            {
+                title = "初识函数",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "尝试编写函数",
+                question = @"函数是指一段在一起的、可以做某一件事儿的程序，也叫做子程序。
 
+在前面的内容中，我们已经接触过了函数的调用，这个函数就是前面用到了很多次的`print(...)`。
+
+调用函数只需要按下面的格式即可：
+
+```lua
+函数名(参数1,参数2,参数3,......)
+```
+
+为何要使用函数？因为很多事情都是重复性操作，我们使用函数，可以快速完成这些操作
+
+下面我们举一个最简单的函数例子，这个函数`没有传入参数、没有返回值`
+
+它实现了一个简单的功能，就是输出`Hello world!`：
+
+```lua
+function hello()
+    print('Hello world!')
+end
+```
+
+这个函数名为`hello`，我们可以按下面的方法进行调用（执行）：
+
+```lua
+hello()
+```
+
+这行代码会输出`Hello world!`。
+
+同时，在Lua中，函数也是一种变量类型，也就是说，`hello`实际上也是一个变量，里面存储的是一个函数，我们可以用下面的代码来理解：
+
+```lua
+a = hello
+--把hello函数同时赋值给a变量
+a()
+--a和hello变量指向同一个函数
+--所以执行结果和hello()相同
+```
+
+因为函数只是个变量，你甚至在一开始可以这样声明`hello`函数：
+
+```lua
+hello = function()
+    print('Hello world!')
+end
+```
+
+下面你需要做一件简单的事情：
+
+新建一个函数变量`biu`，使其执行后会打印`biubiubiu`这个字符串，
+
+新建一个函数变量`pong`，使其与`biu`指向的函数相同
+",
+                code = @"",
+                check = (s) =>
+                {
+                    string r = null;
+                    string output = "";
+                    EventHandler print = (sender,e) =>//print绑定的函数
+                    {
+                        output += sender as string;
+                    };
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        LuaEnv.LuaApi.PrintLuaLog += print;
+                        try
+                        {
+                            lua.DoString(s);//跑代码
+                            lua.DoString("if biu then biu() end");
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        LuaEnv.LuaApi.PrintLuaLog -= print;
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if(output == "biubiubiu" && (bool)lua.DoString("return pong == biu")[0])
+                            return null;
+                        else if(output != "biubiubiu")
+                            return $"函数内容不对哦，没有输出正确结果";
+                        else
+                            return $"pong变量的内容不对哦，应与biu指向同一函数";
+                    }
+                },
+                explain = "在Lua中，函数是对语句和表达式进行抽象的主要方法。既可以用来处理一些特殊的工作，也可以用来计算一些值。",
+            },
+            new LevelTemple
+            {
+                title = "local变量",
+                type = "知识点",
+                infomation = "了解定义域",
+                question =
+                @"之前我们创建的变量，都是全局变量，这种变量在代码运行周期从头到尾，都不会被销毁，而且随处都可调用。
+
+但是当我们代码量增加，很多时候大量新建全局变量会导致内存激增，我们需要一种可以临时使用、并且可以自动销毁释放内存资源的变量，要怎么解决呢？
+
+我们可以使用`local`标志来新建临时变量，使用`local`创建一个局部变量，与全局变量不同，局部变量只在被声明的那个代码块内有效。
+
+参考下面的代码：
+
+```lua
+a = 123
+function add()
+    local n = a+2
+    print(n)
+end
+add()
+```
+
+上面的代码中，`n`就是一个局部变量，它只在这个funcion中有效，并且函数运行完后会自动回收这部分的内存。
+
+我们应该尽可能的使用局部变量，以方便lua虚拟机自动回收内存空间，同时减少资源占用提高运行速度。
+
+下面请阅读以下代码，选出正确的输出结果：
+
+```lua
+str = 'abc'
+function connect()
+    local s = str..'def'
+end
+print(s,str)
+```
+",
+                choiceTitle = "下面结果正确的是？",
+                choices = new string[4]
+                {
+                    "nil nil",
+                    "abc abcdef",
+                    "nil abcdef",
+                    "abc nil",
+                },
+                choice = 4,
+                explain = "我们应该尽可能的使用局部变量",
+            },
+            new LevelTemple
+            {
+                title = "函数参数",
+                type = "写代码",
+                levelType = LevelType.code,
+                infomation = "编写带参数的函数",
+                question = @"在前几章的使用中，我们知道函数是可以传入参数的，如`print(123)`
+
+那么，我们如何编写可以传入参数的函数呢？可以按下面的模板来写
+
+```lua
+function 函数名(参数1,参数2,...)
+    代码内容
+end
+```
+
+这里传入的参数，等价于在函数内部新建了一个`local`的变量，修改这些数据不会影响外部的数据（除了后面还没有讲到的table等类型）
+
+举个例子，比如下面的函数，可以实现打印出两个传入值的和：
+
+```lua
+function add(a,b)
+    print(a+b)
+end
+add(1,2)
+--会输出3
+```
+
+这段代码其实等价于：
+```
+function add()
+    local a = 1
+    local b = 2
+    print(a+b)
+end
+add()
+```
+
+下面问题来了，请设计一个函数`p`，可以按下面的调用方式来打印出物体的密度：
+
+```lua
+--一个长方体的长宽高分别为a、b、c（单位米）
+a = 1
+b = 2
+c = 3
+--这个物体重量为m（单位克）
+m = 230
+--下面打印出密度
+--注：密度计算公式 密度 = 质量 / 体积
+p(a,b,c,m)
+```
+",
+                code = @"--补全代码，满足题目要求
+function p(a,b,c,m)
+    
+    print()
+end
+",
+                check = (s) =>
+                {
+                    string r = null;
+                    string output = "";
+                    EventHandler print = (sender,e) =>//print绑定的函数
+                    {
+                        output += sender as string;
+                    };
+                    using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
+                    {
+                        LuaEnv.LuaApi.PrintLuaLog += print;
+                        try
+                        {
+                            lua.DoString(s);//跑代码
+                            lua.DoString("if p then p(132,230,31,62419) end");
+                        }
+                        catch(Exception ex)
+                        {
+                            r = $"代码报错啦：{ex.Message}";
+                        }
+                        LuaEnv.LuaApi.PrintLuaLog -= print;
+                        if(r != null)//如果有错误信息
+                            return r;
+
+                        if(output == (string)lua.DoString("return tostring(62419/(132*230*31))")[0])
+                            return null;
+                        else
+                            return $"输出的内容不对哦，你输出的是：\r\n"+output;
+                    }
+                },
+                explain = "传入值如果数量不够，那么少的部分就会使nil",
+            },
         };
 
         /// <summary>
