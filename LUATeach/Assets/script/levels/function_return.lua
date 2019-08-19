@@ -67,6 +67,7 @@ check = function(s)
         local lr = lua:DoString("return p("..tostring(a)..","..tostring(b)..","..tostring(c)..","..tostring(m)..")")
         return lr and lr[0]
     end)
+    lua:Dispose()--销毁对象释放资源
     if r then
         if i and i == m/(a*b*c) then
             return ""
