@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -1292,6 +1292,41 @@ end",
             },
             new LevelTemple
             {
+                title = "if判断依据",
+                type = "小测验",
+                infomation = "加深if使用方法的印象",
+                question =
+                @"我们在前面了解到，Lua 把 false 和 nil 看作是`false`，其他的都为`true`（包括0这个值，也是相当于`true`）
+
+那么问题来了，执行下面的代码，将会输出什么？
+
+```lua
+result = ''
+if 0 then
+    result = result..'T,'
+else
+    result = result..'F,'
+end
+if a then
+    result = result..'T'
+else
+    result = result..'F'
+end
+```
+",
+                choiceTitle = "下面结果正确的是？",
+                choices = new string[4]
+                {
+                    "T,T",
+                    "F,F",
+                    "F,T",
+                    "T,F",
+                },
+                choice = 4,
+                explain = "Lua 把 false 和 nil 看作是 false，其他的都为 true",
+            },
+            new LevelTemple
+            {
                 title = "初识函数",
                 type = "写代码",
                 levelType = LevelType.code,
@@ -1523,7 +1558,53 @@ end
                 },
                 explain = "传入值如果数量不够，那么少的部分就会使nil",
             },
+            LevelByLua("function_return.lua"),
         };
+
+
+        /// <summary>
+        /// 使用lua脚本来生成题目所需的信息
+        /// </summary>
+        /// <param name="file">文件，Assers/script/levels文件夹下</param>
+        /// <returns>LevelTemple对象</returns>
+        private static LevelTemple LevelByLua(string file)
+        {
+            var level = new LevelTemple();
+
+            using (var lua = LuaEnv.LuaEnv.CreateLuaEnv())
+            {
+                lua.DoString(Global.Utils.GetAssetsFileContent($"/Assets/script/levels/{file}"));
+
+                level.title = lua.Global.GetInPath<string>("title");
+                level.type = lua.Global.GetInPath<string>("type");
+                level.infomation = lua.Global.GetInPath<string>("infomation");
+                level.question = lua.Global.GetInPath<string>("question");
+                level.explain = lua.Global.GetInPath<string>("explain");
+                level.code = lua.Global.GetInPath<string>("code");
+                level.levelType = LevelType.code;
+                level.check = (s) =>
+                {
+                    try
+                    {
+                        using(var l = LuaEnv.LuaEnv.CreateLuaEnv())
+                        {
+                            l.DoString(Global.Utils.GetAssetsFileContent($"/Assets/script/levels/{file}"));
+                            string r = l.Global.GetInPath<XLua.LuaFunction>("check").Call(s)[0] as string;
+                            if (r.Length == 0)
+                                return null;
+                            else
+                                return r;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        return $"软件代码报错了，请反馈作者，错误信息：\r\n{e}";
+                    }
+                };
+
+                return level;
+            }
+        }
 
         /// <summary>
         /// 获取显示题目的页面名称

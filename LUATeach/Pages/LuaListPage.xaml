@@ -33,7 +33,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="4*"/>
                                     </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding id}" FontSize="18" Foreground="#FF4A4A4A"/>
+                                    <TextBlock Text="{Binding id}" FontSize="18"/>
                                     <TextBlock Text="{Binding title}" Grid.Column="1" FontSize="18" HorizontalAlignment="Center" FontWeight="Bold"/>
                                 </Grid>
                                 <Canvas Grid.Row="1" Height="1" Background="Black" Margin="8"/>

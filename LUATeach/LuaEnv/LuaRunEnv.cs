@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -74,6 +74,15 @@ namespace LUATeach.LuaEnv
         public static int StartTimer(int id,int time)
         {
             CancellationTokenSource timerToken = new CancellationTokenSource();
+            if (pool.ContainsKey(id))
+            {
+                try
+                {
+                    pool[id].Cancel();
+                    pool.Remove(id);
+                }
+                catch { }
+            }
             pool.Add(id, timerToken);
             Task.Run(() => 
             {
@@ -94,10 +103,14 @@ namespace LUATeach.LuaEnv
         /// <param name="id">编号</param>
         public static void StopTimer(int id)
         {
-            if(pool[id] != null)
+            if (pool.ContainsKey(id))
             {
-                pool[id].Cancel();
-                pool.Remove(id);
+                try
+                {
+                    pool[id].Cancel();
+                    pool.Remove(id);
+                }
+                catch { }
             }
         }
 
