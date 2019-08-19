@@ -58,9 +58,22 @@ explain = "至此，你已经初步掌握了函数的使用方法，后面将进
 
 check = function(s)
     local lua = CS.LUATeach.LuaEnv.LuaEnv.CreateLuaEnv()
-    local result
+    local a = math.random(1, 10)
+    local b = math.random(1, 10)
+    local c = math.random(1, 10)
+    local m = math.random(1, 10)
     local r,i = pcall(function ()
         lua:DoString(s)
+        local lr = lua:DoString("return p("..tostring(a)..","..tostring(b)..","..tostring(c)..","..tostring(m)..")")
+        return lr and lr[0]
     end)
-    return ""
+    if r then
+        if i and i == m/(a*b*c) then
+            return ""
+        else
+            return "计算结果不对哦，请检查代码"
+        end
+    else
+        return "代码报错啦，请检查是否有语法错误或运行时错误\r\n报错信息：\r\n"..i
+    end
 end
