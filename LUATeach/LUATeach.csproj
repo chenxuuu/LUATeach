@@ -202,6 +202,7 @@
     <Resource Include="Assets\script\strings.lua" />
     <Resource Include="Assets\script\sys.lua" />
     <Resource Include="Assets\script\levels\function_return.lua" />
+    <Resource Include="Assets\script\levels\function_return2.lua" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1098,12 +1098,14 @@ end",
                     {
                         try
                         {
-                            for(int i=1;i<=10;i++)
+                            Random ra = new Random();
+                            for(int i=1;i<=100;i++)
                             {
-                                lua.DoString($"n={i}");
+                                int temp = ra.Next(1,300);
+                                lua.DoString($"n={temp}");
                                 lua.DoString(s);//跑代码
 
-                                if (!(bool)lua.DoString($"return n == ({i}%2==1 and {i}+1 or {i})")[0])
+                                if (!(bool)lua.DoString($"return n == ({temp}%2==1 and {temp}+1 or {temp})")[0])
                                 {
                                     r = $"当n为{i}时，结果不对";
                                     break;
@@ -1559,6 +1561,7 @@ end
                 explain = "传入值如果数量不够，那么少的部分就会使nil",
             },
             LevelByLua("function_return.lua"),
+            LevelByLua("function_return2.lua"),
         };
 
 
