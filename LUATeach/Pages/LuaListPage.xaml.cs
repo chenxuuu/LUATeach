@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,18 +34,27 @@ namespace LUATeach.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            for(int i=0;i< Global.Levels.LevelList.Count;i++)
+            Task.Run(() =>
             {
-                levels.Add(new Level {
-                    id = i+1,
-                    title = Global.Levels.LevelList[i].title,
-                    type = Global.Levels.LevelList[i].type,
-                    infomation = Global.Levels.LevelList[i].infomation,
-                    enable = i <= Global.Settings.lastPass,
-                });
-            }
+                for (int i = 0; i < Global.Levels.LevelList.Count; i++)
+                {
+                    levels.Add(new Level
+                    {
+                        id = i + 1,
+                        title = Global.Levels.LevelList[i].title,
+                        type = Global.Levels.LevelList[i].type,
+                        infomation = Global.Levels.LevelList[i].infomation,
+                        enable = i <= Global.Settings.lastPass,
+                    });
+                }
 
-            levelsList.ItemsSource = levels;
+                this.Dispatcher.Invoke(new Action(delegate
+                {
+                    Loading.Visibility = Visibility.Collapsed;
+                    levelsList.ItemsSource = levels;
+                }));
+            });
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
