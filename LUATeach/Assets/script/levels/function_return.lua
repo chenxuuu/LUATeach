@@ -75,6 +75,7 @@ check = function(s)
             return "计算结果不对哦，请检查代码"
         end
     else
-        return "代码报错啦，请检查是否有语法错误或运行时错误\r\n报错信息：\r\n"..i
+        return "代码报错啦，请检查是否有语法错误或运行时错误\r\n报错信息：\r\n"..
+        (i:match("c# exception:XLua.LuaException: (.-)\r\n") or i)
     end
 end
