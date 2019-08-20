@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -28,6 +28,14 @@ namespace LUATeach
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //导入之前的配置文件
+            if (Properties.Settings.Default.UpgradeRequired)
+            {
+                Properties.Settings.Default.Upgrade();
+                Properties.Settings.Default.UpgradeRequired = false;
+                Properties.Settings.Default.Save();
+            }
+
             VersionTextBlock.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             mainFrame.Navigate(new Uri("Pages/HomePage.xaml", UriKind.Relative));
             //mainFrame.Navigate(new Uri("Pages/RightPage.xaml", UriKind.Relative));
