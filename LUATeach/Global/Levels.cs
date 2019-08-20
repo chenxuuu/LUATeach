@@ -1266,7 +1266,7 @@ end",
                                         lua.DoString($"a={i}\r\nb={j}\r\nc={k}");
                                         lua.DoString(s);//跑代码
 
-                                        if (!(bool)lua.DoString($"return result == (a+b>=c and b+c>=a and a+c>=b)")[0])
+                                        if (!(bool)lua.DoString($"return result == (a+b>c and b+c>a and a+c>b)")[0])
                                         {
                                             r = $"当a为{i}、b为{j}、c为{k}时，result结果不对";
                                             break;

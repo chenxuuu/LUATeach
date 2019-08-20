@@ -37,7 +37,7 @@ check = function(s)
             return lr and lr[0]
         end)
         if r then
-            if a+b>=c and b+c>=a and a+c>=b then
+            if a+b>c and b+c>a and a+c>b then
                 if not i then
                     lua:Dispose()--销毁对象释放资源
                     return "当三边长度为"..tostring(a)..","..tostring(b)..","..tostring(c).."时，结果不对"
