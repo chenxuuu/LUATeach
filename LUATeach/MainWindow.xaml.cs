@@ -37,6 +37,7 @@ namespace LUATeach
             }
 
             VersionTextBlock.Text = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            Title += $" - {VersionTextBlock.Text} beta";
             mainFrame.Navigate(new Uri("Pages/HomePage.xaml", UriKind.Relative));
             //mainFrame.Navigate(new Uri("Pages/RightPage.xaml", UriKind.Relative));
 

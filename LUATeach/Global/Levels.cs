@@ -1564,6 +1564,28 @@ end
             LevelByLua("function_return.lua"),
             LevelByLua("function_return2.lua"),
             LevelByLua("function_return3.lua"),
+
+            new LevelTemple
+            {
+                title = "更多题目等待更新",
+                type = "结尾",
+                infomation = "现有题目做完啦",
+                question =
+                @"你已经到了末尾，你可以继续等待新题目，也可以去本项目贡献自己的题目：
+
+https://github.com/chenxuuu/LUATeach
+",
+                choiceTitle = "下面没有正确答案",
+                choices = new string[4]
+                {
+                    "xxxx",
+                    "xxxx",
+                    "xxxx",
+                    "xxxx",
+                },
+                choice = 0,
+                explain = "",
+            },
         };
 
 
