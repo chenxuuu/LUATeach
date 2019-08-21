@@ -1195,14 +1195,16 @@ end",
                     {
                         try
                         {
+                            Random ra = new Random();
                             for(int i=1;i<=10;i++)
                             {
-                                lua.DoString($"n={i}");
+                                int temp = ra.Next(1,100);
+                                lua.DoString($"n={temp}");
                                 lua.DoString(s);//跑代码
 
-                                if (!(bool)lua.DoString($"return n == ({i}%2==1 and {i}+1 or {i}*2)")[0])
+                                if (!(bool)lua.DoString($"return n == ({temp}%2==1 and {temp}+1 or {temp}*2)")[0])
                                 {
-                                    r = $"当n为{i}时，结果不对";
+                                    r = $"当n为{temp}时，结果不对";
                                     break;
                                 }
 
@@ -1255,24 +1257,23 @@ end",
                     bool pass = false;
                     using(var lua = LuaEnv.LuaEnv.CreateLuaEnv())//新建lua虚拟机
                     {
+                        Random ran = new Random();
                         try
                         {
-                            for(int i=1;i<=10;i++)
+                            for(int i=1;i<=100;i++)
                             {
-                                for(int j = 1; j <= 10; j++)
-                                {
-                                    for(int k=1;k<=10;k++)
-                                    {
-                                        lua.DoString($"a={i}\r\nb={j}\r\nc={k}");
-                                        lua.DoString(s);//跑代码
+                                int x = ran.Next(1,10);
+                                int y = ran.Next(1,10);
+                                int z = ran.Next(1,10);
+                                lua.DoString($"a={x}\r\nb={y}\r\nc={z}");
+                                lua.DoString(s);//跑代码
 
-                                        if (!(bool)lua.DoString($"return result == (a+b>=c and b+c>=a and a+c>=b)")[0])
-                                        {
-                                            r = $"当a为{i}、b为{j}、c为{k}时，result结果不对";
-                                            break;
-                                        }
-                                    }
+                                if (!(bool)lua.DoString($"return result == (a+b>c and b+c>a and a+c>b)")[0])
+                                {
+                                    r = $"当a为{x}、b为{y}、c为{z}时，result结果不对";
+                                    break;
                                 }
+
                                 if(i==10)//通过检测
                                     pass = true;
                             }
@@ -1562,6 +1563,7 @@ end
             },
             LevelByLua("function_return.lua"),
             LevelByLua("function_return2.lua"),
+            LevelByLua("function_return3.lua"),
         };
 
 
@@ -1601,7 +1603,7 @@ end
                     }
                     catch (Exception e)
                     {
-                        return $"软件代码报错了，请反馈作者，错误信息：\r\n{e}";
+                        return $"代码报错了，错误信息：\r\n{e}";
                     }
                 };
 

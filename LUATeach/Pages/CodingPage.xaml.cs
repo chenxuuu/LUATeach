@@ -1,4 +1,4 @@
-﻿using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using ICSharpCode.AvalonEdit.Search;
 using System;
@@ -57,11 +57,30 @@ namespace LUATeach.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string r = Global.Levels.LevelList[Global.Levels.selected].check(textEditor.Text);
-            if(r == null)
-                this.NavigationService.Navigate(new Uri("Pages/RightPage.xaml", UriKind.Relative));
-            else
-                MessageBox.Show(r, "运行结果", MessageBoxButton.OK, MessageBoxImage.Error);
+            mainGrid.Visibility = Visibility.Collapsed;
+            Loading.Visibility = Visibility.Visible;
+            string code = textEditor.Text;
+            Task.Run(() =>
+            {
+                string r = Global.Levels.LevelList[Global.Levels.selected].check(code);
+                if (r == null)
+                {
+                    this.Dispatcher.Invoke(new Action(delegate
+                    {
+                        this.NavigationService.Navigate(new Uri("Pages/RightPage.xaml", UriKind.Relative));
+                    }));
+                }
+                else
+                {
+                    this.Dispatcher.Invoke(new Action(delegate
+                    {
+                        mainGrid.Visibility = Visibility.Visible;
+                        Loading.Visibility = Visibility.Collapsed;
+                    }));
+                    MessageBox.Show(r, "运行结果", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            });
+
         }
     }
 }
