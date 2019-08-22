@@ -1051,7 +1051,7 @@ d and c
             },
             new LevelTemple
             {
-                title = "条件表达",
+                title = "条件判断",
                 type = "写代码",
                 levelType = LevelType.code,
                 infomation = "初步学习if语句",
@@ -1061,7 +1061,7 @@ d and c
 
 ```lua
 n = 5
-if n < 5 then
+if n < 10 then
     print('n小于10')
 end
 ```
