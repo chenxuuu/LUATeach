@@ -1466,7 +1466,7 @@ print(s,str)
                     "nil nil",
                     "abc abcdef",
                     "nil abcdef",
-                    "abc nil",
+                    "nil abc",
                 },
                 choice = 4,
                 explain = "我们应该尽可能的使用局部变量",
