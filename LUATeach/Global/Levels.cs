@@ -1564,6 +1564,7 @@ end
             LevelByLua("function_return.lua"),
             LevelByLua("function_return2.lua"),
             LevelByLua("function_return3.lua"),
+            LevelByLua("table1.lua"),
 
             new LevelTemple
             {
