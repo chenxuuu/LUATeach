@@ -12,11 +12,11 @@ function trace (event, line)
     if runMaxSeconds > 0 then
         runCount = runCount + 1
         if runCount > 100000 then
-            error("运行代码量超过阈值")
+            error("too many codes!")
         end
     end
     if runMaxSeconds > 0 and os.time() - start >=runMaxSeconds then
-        error("代码运行超时")
+        error("code run timeout")
     end
 end
 debug.sethook(trace, "l")
