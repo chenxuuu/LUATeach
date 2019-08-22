@@ -1,5 +1,4 @@
---函数返回值2
-local oldtype = type
+
 title = "数组"
 type = "写代码"
 infomation = "认识数组"

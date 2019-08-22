@@ -1,4 +1,4 @@
---函数返回值2
+
 local oldtype = type
 title = "返回多个值"
 type = "写代码"
