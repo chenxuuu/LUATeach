@@ -1,5 +1,7 @@
 # LUATeach
 
+![icon](/LUATeach/1-svg.ico)
+
 [![Build status](https://ci.appveyor.com/api/projects/status/3d5aw4ls82ofc2ei?svg=true)](https://ci.appveyor.com/project/chenxuuu/luateach)
 [![MIT](https://img.shields.io/github/license/chenxuuu/luateach)](https://github.com/chenxuuu/luateach/blob/master/LICENSE)
 [![code-size](https://img.shields.io/github/languages/code-size/chenxuuu/luateach.svg)](https://github.com/chenxuuu/luateach/archive/master.zip)
