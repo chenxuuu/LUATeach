@@ -44,27 +44,30 @@ explain = "万物基于table，你正在慢慢理解"
 
 check = function(s)
     local lua = CS.LUATeach.LuaEnv.LuaEnv.CreateLuaEnv()
-    local r,i = pcall(function ()
-        lua:DoString(s)
-        local lr = lua:DoString([[
+    for n=1,20 do
+        local a = math.random(1, 100)
+        local b = math.random(1, 100)
+        local r,i = pcall(function ()
+            lua:DoString(s)
+            local lr = lua:DoString([[
 return type(funcList[1]) == "function" and
     type(funcList[2]) == "function" and
     type(funcList[3]) == "function" and
-    funcList[1](123,123) == 246 and
-    funcList[2](123,123) == 0 and
-    funcList[3](123) == -123
-]])
-        return lr and lr[0]
-    end)
-    if r then
-        if not i then
+    funcList[1](]]..tostring(a)..[[,]]..tostring(b)..[[) == ]]..tostring(a*b)..[[ and
+    funcList[2](]]..tostring(a)..[[,]]..tostring(b)..[[) == ]]..tostring(a-b)..[[ and
+    funcList[3](]]..tostring(a)..[[) == ]]..tostring(-a))
+            return lr and lr[0]
+        end)
+        if r then
+            if not i then
+                lua:Dispose()--销毁对象释放资源
+                return "funcList里的函数不符合要求哦"
+            end
+        else
             lua:Dispose()--销毁对象释放资源
-            return "funcList里的函数不符合要求哦"
+            return "代码报错啦，请检查是否有语法错误或运行时错误\r\n报错信息：\r\n"..
+            (i:match("c# exception:XLua.LuaException: (.-)\r\n") or i)
         end
-    else
-        lua:Dispose()--销毁对象释放资源
-        return "代码报错啦，请检查是否有语法错误或运行时错误\r\n报错信息：\r\n"..
-        (i:match("c# exception:XLua.LuaException: (.-)\r\n") or i)
     end
     lua:Dispose()--销毁对象释放资源
     return ""

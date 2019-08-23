@@ -1,4 +1,4 @@
-﻿using ICSharpCode.AvalonEdit.Highlighting;
+using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using ICSharpCode.AvalonEdit.Search;
 using System;
@@ -65,12 +65,12 @@ namespace LUATeach.Pages
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult back = MessageBox.Show("是否回到主页？当前编辑内容将会自动保存。", "提示", MessageBoxButton.OKCancel, MessageBoxImage.Question);
-            if (back == MessageBoxResult.OK)
-            {
+            //MessageBoxResult back = MessageBox.Show("是否回到主页？当前编辑内容将会自动保存。", "提示", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            //if (back == MessageBoxResult.OK)
+            //{
                 Global.Settings.code = textEditor.Text;
                 this.NavigationService.Navigate(new Uri("Pages/HomePage.xaml", UriKind.Relative));
-            }
+            //}
         }
 
         private void Stop()
