@@ -17,6 +17,7 @@
         <Grid Background="#FFE6E6E6" >
             <TextBlock Text="选择章节" HorizontalAlignment="Center" FontSize="25"/>
             <Button Name="backButton" HorizontalAlignment="Left" Content="返回" Click="BackButton_Click"/>
+            <Button Name="continueButton" HorizontalAlignment="Right" Content="继续上次学习" Click="ContinueButton_Click"/>
         </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" VerticalAlignment="Top">
             <ItemsControl x:Name="levelsList">

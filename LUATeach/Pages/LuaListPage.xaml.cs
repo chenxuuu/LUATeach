@@ -64,6 +64,12 @@ namespace LUATeach.Pages
 
             this.NavigationService.Navigate(new Uri($"Pages/{Global.Levels.GetPage()}.xaml", UriKind.Relative));
         }
+
+        private void ContinueButton_Click(object sender, RoutedEventArgs e)
+        {
+            Global.Levels.selected = Global.Settings.lastPass;
+            this.NavigationService.Navigate(new Uri($"Pages/{Global.Levels.GetPage()}.xaml", UriKind.Relative));
+        }
     }
 
 
