@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,12 +35,18 @@ namespace LUATeach.Global
         {
             get
             {
-                return _lastPass;
+                if(_lastPass >= Global.Levels.LevelList.Count)
+                    return Global.Levels.LevelList.Count - 1;
+                else
+                    return _lastPass;
             }
             set
             {
-                _lastPass = value;
-                Properties.Settings.Default.lastPass = value;
+                if(value >= Global.Levels.LevelList.Count)
+                    _lastPass = Global.Levels.LevelList.Count - 1;
+                else
+                    _lastPass = value;
+                Properties.Settings.Default.lastPass = _lastPass;
                 Properties.Settings.Default.Save();
             }
         }
