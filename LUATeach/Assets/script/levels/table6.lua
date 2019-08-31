@@ -23,7 +23,6 @@ explain = "看样子你已经理解了这部分内容了"
 
 check = function(s)
     local lua = CS.LUATeach.LuaEnv.LuaEnv.CreateLuaEnv()
-    local ran = math.random(1, 9999)
     local r,i = pcall(function ()
         lua:DoString(s)
         local lr = lua:DoString([[

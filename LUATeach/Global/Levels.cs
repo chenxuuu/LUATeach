@@ -1610,6 +1610,8 @@ print(
             },
             LevelByLua("table5.lua"),
             LevelByLua("table6.lua"),
+            LevelByLua("while.lua"),
+            LevelByLua("for.lua"),
 
             new LevelTemple
             {
