@@ -1609,6 +1609,7 @@ print(
                 explain = "下一节就解释，为什么说Lua中，万物基于table",
             },
             LevelByLua("table5.lua"),
+            LevelByLua("table6.lua"),
 
             new LevelTemple
             {
