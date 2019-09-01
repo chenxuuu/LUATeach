@@ -62,7 +62,7 @@ check = function(s)
         lua:DoString(s)
         local lr = lua:DoString([[
 local result = true
-local rt = {1,9,7,4,5,6,3,8,2,10,11}
+local rt = {1,9,7,4,5,6,3,8,2,10,23}
 for i=1,#rt do
     if cards[i] ~= rt[i] then
         result = false
