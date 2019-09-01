@@ -1612,6 +1612,7 @@ print(
             LevelByLua("table6.lua"),
             LevelByLua("while.lua"),
             LevelByLua("for.lua"),
+            LevelByLua("break.lua"),
 
             new LevelTemple
             {
