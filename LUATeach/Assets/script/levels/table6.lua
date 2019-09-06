@@ -1,5 +1,5 @@
 
-title = "table小测试"
+title = "table小测试3"
 type = "写代码"
 infomation = "检查下前几堂课的学习"
 question = [[请新建一个名为`t`的`table`，满足以下要求

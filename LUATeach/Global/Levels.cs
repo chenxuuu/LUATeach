@@ -1606,6 +1606,46 @@ print(
                     "nil 7.52 1.4 2019",
                 },
                 choice = 4,
+                explain = "深入理解table",
+            },
+            new LevelTemple
+            {
+                title = "table小测验2",
+                type = "小测试",
+                infomation = "测试一下table的学习情况",
+                question =
+                @"下面的代码，将会打印什么？
+
+```lua
+t = {
+    {
+        price = 7.52,
+        weight = 2.1,
+    },
+    {
+        price = 8.31,
+        weight = 1.4,
+        year = '2018'
+    },
+    year = '2019'
+}
+print(
+    t[""price""],
+    t[1].price,
+    t[2].weight,
+    t[""year""]
+)
+```
+",
+                choiceTitle = "请选出正确答案",
+                choices = new string[4]
+                {
+                    "7.52 7.52 1.4 2019",
+                    "7.52 7.52 1.4 2019",
+                    "nil 7.52 1.4 2018",
+                    "nil 7.52 1.4 2019",
+                },
+                choice = 4,
                 explain = "下一节就解释，为什么说Lua中，万物基于table",
             },
             LevelByLua("table5.lua"),
