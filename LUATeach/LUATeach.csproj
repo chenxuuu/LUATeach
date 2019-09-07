@@ -213,6 +213,10 @@
     <Resource Include="Assets\script\levels\while.lua" />
     <Resource Include="Assets\script\levels\for.lua" />
     <Resource Include="Assets\script\levels\break.lua" />
+    <Resource Include="Assets\script\levels\loop1.lua" />
+    <Resource Include="Assets\script\levels\loop2.lua" />
+    <Resource Include="Assets\script\levels\loop3.lua" />
+    <Resource Include="Assets\script\levels\loop4.lua" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
