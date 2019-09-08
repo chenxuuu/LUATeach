@@ -1658,6 +1658,12 @@ print(
             LevelByLua("loop2.lua"),
             LevelByLua("loop3.lua"),
             LevelByLua("loop4.lua"),
+            LevelByLua("string.sub.lua"),
+            LevelByLua("string.rep.lua"),
+            LevelByLua("string.len.lua"),
+            LevelByLua("string.low.lua"),
+            LevelByLua("string.format.lua"),
+            LevelByLua("string.lua"),
 
             new LevelTemple
             {

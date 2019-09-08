@@ -217,6 +217,12 @@
     <Resource Include="Assets\script\levels\loop2.lua" />
     <Resource Include="Assets\script\levels\loop3.lua" />
     <Resource Include="Assets\script\levels\loop4.lua" />
+    <Resource Include="Assets\script\levels\string.sub.lua" />
+    <Resource Include="Assets\script\levels\string.rep.lua" />
+    <Resource Include="Assets\script\levels\string.len.lua" />
+    <Resource Include="Assets\script\levels\string.low.lua" />
+    <Resource Include="Assets\script\levels\string.format.lua" />
+    <Resource Include="Assets\script\levels\string.lua" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
