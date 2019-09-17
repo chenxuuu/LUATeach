@@ -223,6 +223,8 @@
     <Resource Include="Assets\script\levels\string.low.lua" />
     <Resource Include="Assets\script\levels\string.format.lua" />
     <Resource Include="Assets\script\levels\string.lua" />
+    <Resource Include="Assets\script\levels\string.char.lua" />
+    <Resource Include="Assets\script\levels\string.byte.lua" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

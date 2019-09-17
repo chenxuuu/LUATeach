@@ -1664,6 +1664,8 @@ print(
             LevelByLua("string.low.lua"),
             LevelByLua("string.format.lua"),
             LevelByLua("string.lua"),
+            LevelByLua("string.char.lua"),
+            LevelByLua("string.byte.lua"),
 
             new LevelTemple
             {
