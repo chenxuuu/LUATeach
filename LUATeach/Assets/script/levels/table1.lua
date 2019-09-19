@@ -53,7 +53,7 @@ explain = "在Lua中，万物基于table，到后面你就明白了"
 
 check = function(s)
 
-    if s:find("1.*,.*9.*,.*7.*") then
+    if s:find("{1.*,.*9.*,.*7.*}") then
         return "请自觉做题，作弊没什么意义"
     end
 
