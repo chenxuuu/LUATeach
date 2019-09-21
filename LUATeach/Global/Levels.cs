@@ -289,8 +289,7 @@ print(a,b,c,d)
                 "你要做的事：\r\n\r\n" +
                 "已知变量`a`和`b`，请交换它们所存储的值",
                 code = "--你需要新建变量来完成这个题目\r\n" +
-                "--a和b均是已经声明过的变量\r\n\r\n\r\n" +
-                "a = \r\nb = ",
+                "--a和b均是已经声明过的变量\r\n\r\n\r\n",
                 check = (s) =>
                 {
                     string r = null;
@@ -1668,6 +1667,7 @@ print(
             LevelByLua("string.lua"),
             LevelByLua("string.char.lua"),
             LevelByLua("string.byte.lua"),
+            LevelByLua("string.find.lua"),
 
             new LevelTemple
             {
@@ -1818,5 +1818,9 @@ https://github.com/chenxuuu/LUATeach
         /// 代码题
         /// </summary>
         code,
+        /// <summary>
+        /// 正则匹配题
+        /// </summary>
+        regex,
     }
 }
