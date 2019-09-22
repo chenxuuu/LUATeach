@@ -63,8 +63,8 @@
     <Reference Include="AdonisUI.ClassicTheme, Version=1.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AdonisUI.ClassicTheme.1.11.0\lib\net40\AdonisUI.ClassicTheme.dll</HintPath>
     </Reference>
-    <Reference Include="AutoUpdater.NET, Version=1.5.6.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autoupdater.NET.Official.1.5.6\lib\net40\AutoUpdater.NET.dll</HintPath>
+    <Reference Include="AutoUpdater.NET, Version=1.5.7.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autoupdater.NET.Official.1.5.7\lib\net40\AutoUpdater.NET.dll</HintPath>
     </Reference>
     <Reference Include="AutoUpdaterDotNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AppAutoUpdater.1.1.1\lib\net45\AutoUpdaterDotNet.dll</HintPath>
@@ -81,11 +81,12 @@
     <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
       <HintPath>..\packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
-    <Reference Include="Markdig, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Markdig.0.16.0\lib\net40\Markdig.dll</HintPath>
+    <Reference Include="Markdig, Version=0.17.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Markdig.0.17.1\lib\net40\Markdig.dll</HintPath>
     </Reference>
-    <Reference Include="Markdig.Wpf, Version=0.2.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Markdig.Wpf.0.2.8\lib\net40\Markdig.Wpf.dll</HintPath>
+    <Reference Include="Markdig.Wpf, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Markdig.Wpf.0.3.0\lib\net40\Markdig.Wpf.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -227,6 +228,8 @@
     <Resource Include="Assets\script\levels\string.byte.lua" />
     <Resource Include="Assets\script\levels\string.find.lua" />
     <Resource Include="Assets\script\levels\string.gsub.lua" />
+    <Resource Include="Assets\script\levels\table.concat.lua" />
+    <Resource Include="Assets\script\levels\table.insert.lua" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
