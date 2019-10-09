@@ -1,4 +1,4 @@
-﻿<Page x:Class="LUATeach.Pages.IntroducePage"
+<Page x:Class="LUATeach.Pages.IntroducePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -19,6 +19,7 @@
         <Grid Background="#FFE6E6E6" >
             <TextBlock x:Name="titleTextBlock" HorizontalAlignment="Center" FontSize="25"/>
             <Button Name="backButton" HorizontalAlignment="Left" Content="返回" Click="BackButton_Click"/>
+            <Button Name="helpButton" HorizontalAlignment="Right" Content="上Ask求助" Click="helpButton_Click"/>
         </Grid>
         <markdig:MarkdownViewer Grid.Row="1" x:Name="Viewer" ScrollViewer.CanContentScroll="True">
             <markdig:MarkdownViewer.Resources>

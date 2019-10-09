@@ -46,7 +46,7 @@ code = [[
 --需要用print输出要求的结果
 --一共1行
 ]]
-explain = "string.match和string.gmatch匹配函数，由于涉及正则，太过复杂，将在教程最后进行介绍"
+explain = "string.match和string.gmatch匹配函数，由于涉及正则，太过复杂，请自行上网查找资料"
 
 check = function(s)
     local lua = CS.LUATeach.LuaEnv.LuaEnv.CreateLuaEnv()
