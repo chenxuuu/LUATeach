@@ -54,5 +54,8 @@
             <Button x:Name="option3" Grid.Row="3" Margin="2" FontSize="20" Click="Option3_Click"/>
             <Button x:Name="option4" Grid.Row="4" Margin="2" FontSize="20" Click="Option4_Click"/>
         </Grid>
+        
+        <!--统计-->
+        <WebBrowser x:Name="webPage" Visibility="Collapsed"/>
     </Grid>
 </Page>

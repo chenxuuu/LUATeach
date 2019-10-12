@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +29,7 @@ namespace LUATeach.Pages
         {
             explainTextBlock.Text = Global.Levels.LevelList[Global.Levels.selected].explain;
             Global.Settings.lastPass++;
+            webPage.Navigate(new Uri($"http://luateach.papapoi.com/RightPage/{Global.Levels.selected}"));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

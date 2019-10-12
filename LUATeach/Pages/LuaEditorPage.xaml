@@ -1,4 +1,4 @@
-﻿<Page x:Class="LUATeach.Pages.LuaEditorPage"
+<Page x:Class="LUATeach.Pages.LuaEditorPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -38,5 +38,9 @@
 
         <!-- 中间改变分割大小的东西 -->
         <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" Grid.ColumnSpan="2"/>
+
+
+        <!--统计-->
+        <WebBrowser Source="http://luateach.papapoi.com/LuaEditorPage" Visibility="Collapsed"/>
     </Grid>
 </Page>

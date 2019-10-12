@@ -70,6 +70,8 @@ namespace LUATeach.Pages
             };
 
             ReLoadChoice();
+
+            webPage.Navigate(new Uri($"http://luateach.papapoi.com/LuaPage/{Global.Levels.selected}"));
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

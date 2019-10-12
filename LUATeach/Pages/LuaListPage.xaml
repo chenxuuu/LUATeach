@@ -61,5 +61,7 @@
                             Focusable="False"/>
             <TextBlock Text="加载中" HorizontalAlignment="Center" FontSize="40"/>
         </WrapPanel>
+        <!--统计-->
+        <WebBrowser Source="http://luateach.papapoi.com/LuaListPage" Visibility="Collapsed"/>
     </Grid>
 </Page>

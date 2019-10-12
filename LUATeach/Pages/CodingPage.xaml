@@ -57,5 +57,8 @@
                             Focusable="False"/>
             <TextBlock Text="检验中" HorizontalAlignment="Center" FontSize="40"/>
         </WrapPanel>
+        
+        <!--统计-->
+        <WebBrowser x:Name="webPage" Visibility="Collapsed"/>
     </Grid>
 </Page>

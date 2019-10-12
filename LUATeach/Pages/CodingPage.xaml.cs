@@ -49,6 +49,8 @@ namespace LUATeach.Pages
                     $"{Global.Levels.LevelList[Global.Levels.selected].title}";
             Viewer.Markdown = Global.Levels.LevelList[Global.Levels.selected].question;
             textEditor.Text = Global.Levels.LevelList[Global.Levels.selected].code;
+
+            webPage.Navigate(new Uri($"http://luateach.papapoi.com/LuaPage/{Global.Levels.selected}"));
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

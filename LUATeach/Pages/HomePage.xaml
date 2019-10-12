@@ -1,4 +1,4 @@
-﻿<Page x:Class="LUATeach.Pages.HomePage"
+<Page x:Class="LUATeach.Pages.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -40,5 +40,7 @@
                 <TextBlock Text="可以测试自己想运行的Lua脚本"/>
             </StackPanel>
         </Button>
+        <!--统计-->
+        <WebBrowser Source="http://luateach.papapoi.com/HomePage" Visibility="Collapsed"/>
     </Grid>
 </Page>
