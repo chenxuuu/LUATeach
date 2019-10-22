@@ -71,9 +71,9 @@ check = function(s)
         lua:DoString("max="..tostring(ran2))
         local lr = lua:DoString([[
             check = 0
-            for i=13,9999,13 do
-                check = check + i
-                if check > max then
+            for i=max,max+13 do
+                if i%13==0 then
+                    check=i
                     break
                 end
             end
