@@ -54,7 +54,7 @@ end
 
 local check = {}
 for i=1,a do
-    table.insert(check, tostring(2*a-1))
+    table.insert(check, tostring(2*i-1))
 end
 
 return table.concat(allPrintData, "\r\n") == table.concat(check, "\r\n")
