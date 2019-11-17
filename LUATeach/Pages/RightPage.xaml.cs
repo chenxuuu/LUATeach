@@ -28,7 +28,8 @@ namespace LUATeach.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             explainTextBlock.Text = Global.Levels.LevelList[Global.Levels.selected].explain;
-            Global.Settings.lastPass++;
+            if (Global.Settings.lastPass <= Global.Levels.selected)
+                Global.Settings.lastPass++;
             webPage.Navigate(new Uri($"http://luateach.papapoi.com/RightPage/{Global.Levels.selected}"));
         }
 
